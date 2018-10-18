@@ -1,0 +1,163 @@
+@import "../../../assets/Estilos/estilos-generales.scss";
+
+@mixin button($bcolor,
+$url,
+$x1,
+$y1,
+$bor,
+$col) {
+ background: $bcolor;
+ -webkit-mask: url($url);
+ mask: url($url);
+ -webkit-mask-size: $x1 $y1;
+ mask-size: $x1 $y1;
+ border: $bor;
+ color: $col;
+}
+
+.container-fluid{
+    width: 100%;
+    height: 100%;
+    @media (min-width: 768px) {
+        display: flex;
+        align-items: center;
+    }    
+    
+
+    .principal{
+        padding: 30px;
+        .descripcion{
+            border: 2px solid $color02;
+            padding: 30px;
+            color: #Fff;
+            font-family: 'Lato', sans-serif;
+            h1{
+                font-family: $font-family;
+            }
+
+            h3{
+                margin-top: 20px;
+            }
+
+            p{
+                margin-top: 5px;
+            }
+        }
+
+        .contenedor-boton {
+            position: relative;
+            width: 100px;
+            height: 50px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 7vh;
+            overflow: hidden;
+            border: 2px solid $color02;
+            font-family: 'Lato', sans-serif;
+            font-weight: bold;
+            transition: 0.5s;
+            letter-spacing: 1px;
+            padding: 0;
+            box-sizing: border-box;
+            
+            button {
+                width: 101%;
+                height: 100%;
+                font-family: 'Lato', sans-serif;
+                font-size: 20px;
+                letter-spacing: 1px;
+                text-align: center;
+            
+                @include button($color02,
+                "https://raw.githubusercontent.com/robin-dela/css-mask-animation/master/img/urban-sprite.png",
+                3000%,
+                100%,
+                none,
+                #fff);
+                cursor: pointer;
+                -webkit-animation: ani2 0.7s steps(29) forwards;
+                animation: ani2 0.7s steps(29) forwards;
+            
+                &:hover {
+                -webkit-animation: ani 0.7s steps(29) forwards;
+                animation: ani 0.7s steps(29) forwards;
+                }
+            }
+            }           
+            
+            
+            .mas {
+                width: 101%;
+                height: 100%;
+                color: $color02;
+                text-align: center;
+                width: 101%;
+                font-family: 'Lato', sans-serif;
+                font-weight: bold;
+                position: absolute;
+                font-size: 20px;
+                overflow: hidden;
+                margin-top: 9px;
+            }
+            
+            @-webkit-keyframes ani {
+            from {
+                -webkit-mask-position: 0 0;
+                mask-position: 0 0;
+            }
+            
+            to {
+                -webkit-mask-position: 100% 0;
+                mask-position: 100% 0;
+            }
+            }
+            
+            @keyframes ani {
+            from {
+                -webkit-mask-position: 0 0;
+                mask-position: 0 0;
+            }
+            
+            to {
+                -webkit-mask-position: 100% 0;
+                mask-position: 100% 0;
+            }
+            }
+            
+            @-webkit-keyframes ani2 {
+            from {
+                -webkit-mask-position: 100% 0;
+                mask-position: 100% 0;
+            }
+            
+            to {
+                -webkit-mask-position: 0 0;
+                mask-position: 0 0;
+            }
+            }
+            
+            @keyframes ani2 {
+            from {
+                -webkit-mask-position: 100% 0;
+                mask-position: 100% 0;
+            }
+            
+            to {
+                -webkit-mask-position: 0 0;
+                mask-position: 0 0;
+            }
+            }
+    }
+}
+
+.btn-primary{
+    background-color: $color02;
+    border-color: $color02;
+}
+
+.alert{
+    width: 50%;
+    position: absolute;
+    bottom: 20%;
+    left: 25%;
+}

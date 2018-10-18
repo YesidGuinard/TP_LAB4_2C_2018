@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <button (click)="sidenav.toggle()" class="navbar-toggler" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" [routerLink]="['/']">La Comanda</a>
+</nav>
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side" class="bg-dark">Start</mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

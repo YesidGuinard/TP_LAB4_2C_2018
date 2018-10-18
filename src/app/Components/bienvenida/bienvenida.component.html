@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row principal justify-content-center align-items-center">
+    <div class="col-12">
+      <div class="row justify-content-center align-items-center">
+        <div class="col-11 col-md-10 descripcion">
+          <h1>La Comanda</h1>
+          <h3>Bienvenido a nuestro restaurante</h3>
+          <p>
+            Sientase como en su casa mientras disfruta de los platos más deliciosos preparados por nuestros
+            especialistas.
+          </p>
+          <p>
+            Contamos con cuatro sectores bien diferenciados. La barra de tragos y vinos en nuestra entrada,
+            en el patio trasero se encuentra la barra de choperas de cerveza artesanal, la cocina donde se preparan
+            todos los platos de comida
+            y nuestro candy bar que se encarga de la preparación de postres artesanales.
+          </p>
+          <h3>Nuestra aplicación</h3>
+          <p>
+            Todo nuestro servicio funciona a través de esta aplicación web.
+          </p>
+          <p>
+            Si usted es cliente, seleccione la opción correspondiente en los botones que se encuentran debajo.
+            Luego, inserte el código que le ha proporcionado el mozo al hacer su pedido.
+          </p>
+          <p>
+            En ella podrá ver los detalles de su pedido, el estado del mismo y el costo a pagar. Al finalizar, se
+            habilitará una breve encuesta de satifacción que usted podrá completar.
+          </p>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-5 col-md-4 contenedor-boton align-self-center">
+          <span class="mas">CLIENTE</span>
+          <button type="button" name="Hover" data-toggle="modal" data-target="#clienteModal">CLIENTE</button>
+        </div>
+        <div class="col-5 col-md-4 contenedor-boton align-self-center">
+          <span class="mas">EMPLEADO</span>
+          <button type="button" name="Hover" [routerLink]="['/Empleados']">EMPLEADO</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="clienteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Mesa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="mesaGroup" (keyup.enter)="ValidarMesa()">
+          <div class="form-group">
+            <label for="mesa">Ingrese su código de mesa: </label>
+            <input type="text" class="form-control form-control-lg" formControlName="mesa" placeholder="MES##"
+              maxlength="5" [value]="mesaGroup.get('mesa').value | uppercase" [ngClass]="{'is-invalid' : (mesaGroup.get('mesa').touched && mesaGroup.get('mesa').invalid) || respuestaInvalida }">
+            <div *ngIf="mesaGroup.get('mesa').hasError('required')" class="invalid-feedback">
+              Ingrese un código.
+            </div>
+            <div *ngIf="mesaGroup.get('mesa').hasError('pattern')" class="invalid-feedback"> 
+              Ingrese un código con formato válido.
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="ValidarMesa()">Ingresar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="respuestaInvalida" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <button type="button" class="close" (click)="respuestaInvalida = false">&times;</button>
+    La mesa ingresada no existe o no se encuentra activa.
+  </div>
+</div>
