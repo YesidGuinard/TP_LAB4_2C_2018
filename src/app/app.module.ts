@@ -6,7 +6,8 @@ import { AppRoutingModule } from './Routes/app-routing.module';
 import { NavegacionComponent } from './Components/navegacion/navegacion.component';
 import { ClientesComponent } from './Components/clientes/clientes.component';
 import { EmpleadosComponent } from './Components/empleados/empleados.component';
-import { MatSidenavModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatIconModule } from '@angular/material';
+import { MatSidenavModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatIconModule
+  , MatExpansionModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ClientesLoginComponent } from './Components/clientes-login/clientes-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -33,7 +34,8 @@ import { PedidoService } from './Services/pedido.service';
     MatFormFieldModule,
     MatIconModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule 
   ],
   providers: [
     HttpBase,
