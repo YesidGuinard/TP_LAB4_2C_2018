@@ -3,22 +3,27 @@ import { CommonModule } from '@angular/common';
 import { BienvenidaComponent } from '../Components/bienvenida/bienvenida.component';
 import { EmpleadosComponent } from '../Components/empleados/empleados.component';
 import { ClientesComponent } from '../Components/clientes/clientes.component';
-import { ClientesLoginComponent } from '../Components/clientes-login/clientes-login.component';
+import { EmpleadosLoginComponent } from '../Components/empleados-login/empleados-login.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/auth.guard'
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent },
   {
-    path: 'Empleados', component: EmpleadosComponent
+    path: 'Login', component: EmpleadosLoginComponent 
   },
   {
-    path: 'Clientes', component: ClientesComponent,
-    children: [
-      {
-        path: '',
-        component: ClientesLoginComponent
-      }
-    ]
+    path: 'Empleados', 
+    component: EmpleadosComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'Clientes', component: ClientesComponent
+    // children: [
+    //   {
+    //     path: ''
+    //   }
+    // ]
   }
 ];
 

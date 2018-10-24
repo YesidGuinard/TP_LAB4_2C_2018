@@ -1,0 +1,40 @@
+<div class="container h-100">
+  <div class="row">
+    <div class="col-12">
+      <h1>La Comanda</h1>
+      <hr>
+    </div>
+  </div>
+  <div class="row rowLogin justify-content-center align-items-center h-75">
+    <div class="col-5">
+      <div class="card" [ngClass]="{'border-danger': error}">
+        <div class="card-body">
+          <h5 class="card-title">Ingreso Empleados</h5>
+          <form [formGroup]="form">
+            <div class="form-group">
+              <label for="usuario">Usuario: </label>
+              <input type="text" id="usuario" formControlName="usuario" class="form-control" [ngClass]="{ 'is-invalid': form.controls['usuario'].touched && form.controls['usuario'].invalid }">
+              <div *ngIf="form.controls['usuario'].touched && form.controls['usuario'].invalid" class="invalid-feedback">
+                <div *ngIf="form.controls['usuario'].errors.required">Debe ingresar un usuario.</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Contraseña: </label>
+              <input type="password" id="password" class="form-control" formControlName="password" [ngClass]="{ 'is-invalid': form.controls['password'].touched && form.controls['password'].invalid }">
+              <div *ngIf="form.controls['password'].touched && form.controls['password'].invalid" class="invalid-feedback">
+                <div *ngIf="form.controls['password'].errors.required">Debe ingresar la contraseña.</div>
+              </div>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" (click)="Submit()">Ingresar</button>
+            <button type="button" class="btn btn-secondary" [routerLink]="[ '/' ]">Volver</button>
+          </div>
+        </div>
+        <div *ngIf="error" class="card-footer">
+          <small class="text-danger font-weight-bold"><i class="fa fa-times"></i> {{errorMessage}} </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,7 +29,7 @@ export class HttpBase<T> {
     .catch( this.handleError );
   }
 
-  public httpPostP( url: string, objeto: JSON )
+  public httpPostP( url: string, objeto: JSON)
   {
     return this.http.post( this.urlBase + url, objeto).toPromise();
   }
