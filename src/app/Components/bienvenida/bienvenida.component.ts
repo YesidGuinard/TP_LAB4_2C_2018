@@ -9,7 +9,7 @@ import { PedidoService } from '../../Services/pedido.service';
 })
 export class BienvenidaComponent implements OnInit {
 
-  private mesaGroup: FormGroup;
+  public mesaGroup: FormGroup;
   public respuestaInvalida : boolean;
 
   constructor(private fb: FormBuilder, private pedidoService: PedidoService) {

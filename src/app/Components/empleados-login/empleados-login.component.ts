@@ -14,9 +14,9 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class EmpleadosLoginComponent implements OnInit {
 
-  private form : FormGroup;
-  private error : boolean;
-  private errorMessage : string;
+  public form : FormGroup;
+  public error : boolean;
+  public errorMessage : string;
 
   constructor(private fb: FormBuilder, private authService : AuthService, private jwt : JwtHelperService, private router : Router) {
     this.form = this.fb.group({

@@ -41,7 +41,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     MatExpansionModule,
     [JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
+        tokenGetter(): string {
           return '';
         }
       }
