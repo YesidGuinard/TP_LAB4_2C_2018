@@ -42,6 +42,7 @@ export class EmpleadosLoginComponent implements OnInit {
             let token : JSON = this.jwt.decodeToken(response["Token"]);
             let user : User = new User(token["usuario"],token["tipo"],token["id"],token["nombre"], response["Token"]);
             localStorage.setItem("currentUser",JSON.stringify(user));
+            localStorage.setItem("token",JSON.stringify(token));
             if(!this.authService.redirectUrl){
               this.authService.redirectUrl = "/Empleados";
             }

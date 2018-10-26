@@ -18,6 +18,10 @@ import { ErrorInterceptor } from './Services/Interceptors/ErrorInterceptor';
 import { JwtInterceptor } from './Services/Interceptors/JWTInterceptor';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
+export function getAccessToken() {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,9 +45,8 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     MatExpansionModule,
     [JwtModule.forRoot({
       config: {
-        tokenGetter(): string {
-          return '';
-        }
+        tokenGetter: (getAccessToken),
+        whitelistedDomains: ['https://mauriciocerizza.github.io','localhost:4200']
       }
     })]
   ],
