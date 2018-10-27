@@ -10,13 +10,15 @@ import { MatSidenavModule, MatCardModule, MatButtonModule, MatFormFieldModule, M
   , MatExpansionModule } from '@angular/material';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpBase } from './Services/http-base.service';
 import { PedidoService } from './Services/pedido.service';
 import { EmpleadosLoginComponent } from './Components/empleados-login/empleados-login.component';
 import { ErrorInterceptor } from './Services/Interceptors/ErrorInterceptor';
 import { JwtInterceptor } from './Services/Interceptors/JWTInterceptor';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { SpinnerInterceptor } from './Services/Interceptors/SpinnerInterceptor';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -35,7 +37,8 @@ export function getAccessToken() {
     BrowserModule,
     AppRoutingModule,
     MatSidenavModule,
-    NoopAnimationsModule, 
+    NoopAnimationsModule,
+    NgxSpinnerModule,
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -46,15 +49,28 @@ export function getAccessToken() {
     [JwtModule.forRoot({
       config: {
         tokenGetter: (getAccessToken),
-        whitelistedDomains: ['https://mauriciocerizza.github.io','localhost:4200']
+        whitelistedDomains: ['https://mauriciocerizza.github.io', 'localhost:4200']
       }
     })]
   ],
   providers: [
     HttpBase,
-    PedidoService, 
-    ErrorInterceptor,
-    JwtInterceptor, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+    PedidoService,
     JwtHelperService
   ],
   bootstrap: [AppComponent]

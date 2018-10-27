@@ -10,9 +10,17 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="logout()">LOGOUT</a>
-            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <span class="navbar-text"> <i class="far fa-id-card"></i> {{user.nombre}} || 
+                <i *ngIf="user.tipo === 'Cocinero'" class="fas fa-utensils"></i>
+                <i *ngIf="user.tipo === 'Socio'" class="far fa-handshake"></i> 
+                <i *ngIf="user.tipo === 'Bartender'" class="fas fa-cocktail"></i> 
+                <i *ngIf="user.tipo === 'Mozo'" class="fas fa-user-tie"></i>
+                <i *ngIf="user.tipo === 'Cervecero'" class="fas fa-beer"></i>
+                {{user.tipo}} || </span>
+            <li class="nav-item"><a class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i> 
+                    Desconectarse</a></li>
         </ul>
     </div>
 </nav>

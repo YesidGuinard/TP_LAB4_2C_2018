@@ -14,11 +14,11 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class EmpleadosLoginComponent implements OnInit {
 
-  public form : FormGroup;
-  public error : boolean;
-  public errorMessage : string;
+  public form: FormGroup;
+  public error: boolean;
+  public errorMessage: string;
 
-  constructor(private fb: FormBuilder, private authService : AuthService, private jwt : JwtHelperService, private router : Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private jwt: JwtHelperService, private router: Router) {
     this.form = this.fb.group({
         usuario: ['', Validators.required],
         password: ['', Validators.required]
@@ -29,28 +29,27 @@ export class EmpleadosLoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  public Submit():void{
-    this.errorMessage = "";
+  public Submit(): void {
+    this.errorMessage = '';
     this.error = false;
-    if(this.form.valid){
-      let dataLogin : Login = new Login(this.form.get("usuario").value,
-                              this.form.get("password").value);
+    if (this.form.valid) {
+      const dataLogin: Login = new Login(this.form.get('usuario').value,
+                              this.form.get('password').value);
       this.authService.Loguear(dataLogin)
       .then(
-        response => {     
-          if(response["Estado"] === "OK"){
-            let token : JSON = this.jwt.decodeToken(response["Token"]);
-            let user : User = new User(token["usuario"],token["tipo"],token["id"],token["nombre"], response["Token"]);
-            localStorage.setItem("currentUser",JSON.stringify(user));
-            localStorage.setItem("token",JSON.stringify(token));
-            if(!this.authService.redirectUrl){
-              this.authService.redirectUrl = "/Empleados";
+        response => {
+          if (response['Estado'] === 'OK') {
+            const token: JSON = this.jwt.decodeToken(response['Token']);
+            const user: User = new User(token['usuario'], token['tipo'], token['id'], token['nombre'], response['Token']);
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('token', JSON.stringify(token));
+            if (!this.authService.redirectUrl) {
+              this.authService.redirectUrl = '/Empleados';
             }
             this.router.navigate([this.authService.redirectUrl]);
-          }
-          else{
+          } else {
             this.error = true;
-            this.errorMessage = response["Mensaje"];
+            this.errorMessage = response['Mensaje'];
           }
         }
       )
@@ -59,9 +58,8 @@ export class EmpleadosLoginComponent implements OnInit {
           console.error(response);
         }
       );
-    }
-    else{
-      this.errorMessage = "Debe completar los campos correctamente."
+    } else {
+      this.errorMessage = 'Debe completar los campos correctamente.';
       this.error = true;
     }
   }

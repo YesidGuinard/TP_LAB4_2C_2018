@@ -6,13 +6,12 @@ import { map, tap, catchError, delay } from 'rxjs/operators';
 
 @Injectable()
 export class HttpBase<T> {
-  urlBase:String = 'https://restaurante-cerizza.herokuapp.com/'
+  urlBase: String = 'https://restaurante-cerizza.herokuapp.com/';
 
   constructor( public http: HttpClient ) {
    }
 
-  public httpGetP ( url: string)
-  {
+  public httpGetP ( url: string) {
     return this.http
     .get( this.urlBase + url )
     .toPromise()
@@ -20,8 +19,7 @@ export class HttpBase<T> {
     .catch( this.handleError );
   }
 
-  public httpDeleteP ( url: string)
-  {
+  public httpDeleteP ( url: string) {
     return this.http
     .delete( this.urlBase + url )
     .toPromise()
@@ -29,24 +27,21 @@ export class HttpBase<T> {
     .catch( this.handleError );
   }
 
-  public httpPostP( url: string, objeto: JSON)
-  {
+  public httpPostP( url: string, objeto: JSON) {
     return this.http.post( this.urlBase + url, objeto).toPromise();
   }
 
-  public httpGetO<T>( url: string)
-  {
-    return this.http.get<T>( this.urlBase +url );
+  // tslint:disable-next-line:no-shadowed-variable
+  public httpGetO<T>( url: string) {
+    return this.http.get<T>( this.urlBase + url );
   }
 
 
-  private extractData ( res: Response )
-  {
+  private extractData ( res: Response ) {
     return res.json() || {};
   }
 
-  private handleError ( error: Response | any )
-  {
+  private handleError ( error: Response | any ) {
     return error;
   }
 }

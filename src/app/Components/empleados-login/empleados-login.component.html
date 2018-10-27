@@ -10,7 +10,7 @@
       <div class="card" [ngClass]="{'border-danger': error}">
         <div class="card-body">
           <h5 class="card-title">Ingreso Empleados</h5>
-          <form [formGroup]="form">
+          <form [formGroup]="form" (keyup.enter)="Submit()">
             <div class="form-group">
               <label for="usuario">Usuario: </label>
               <input type="text" id="usuario" formControlName="usuario" class="form-control" [ngClass]="{ 'is-invalid': form.controls['usuario'].touched && form.controls['usuario'].invalid }">

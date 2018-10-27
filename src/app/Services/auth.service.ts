@@ -13,12 +13,12 @@ export class AuthService {
   constructor(public miHttp: HttpBase<any>) {
   }
 
-  Loguear(dataLogin : Login){
-    let request : JSON = JSON.parse(JSON.stringify(dataLogin));
-    return this.miHttp.httpPostP("/empleados/login", request);
+  Loguear(dataLogin: Login) {
+    const request: JSON = JSON.parse(JSON.stringify(dataLogin));
+    return this.miHttp.httpPostP('/empleados/login', request);
   }
 
-  logout(){
-    localStorage.removeItem("currentUser");
+  logout() {
+    localStorage.removeItem('currentUser');
   }
 }
