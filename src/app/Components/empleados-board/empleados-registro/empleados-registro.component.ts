@@ -1,5 +1,4 @@
 import { EmpleadoService } from './../../../Services/empleado.service';
-import { NgxCaptchaModule } from 'ngx-captcha';
 import { Component, OnInit, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptcha2Component } from 'ngx-captcha';

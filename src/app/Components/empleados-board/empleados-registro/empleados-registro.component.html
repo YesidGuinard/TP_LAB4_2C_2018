@@ -34,7 +34,7 @@
         <option value="Cervecero">Cervecero</option>
       </select>
     </div>
-    <ngx-recaptcha2 #captchaElem [siteKey]="key" [size]="normal" [hl]="es" [theme]="light" [type]="image" formControlName="recaptcha">
+    <ngx-recaptcha2 #captchaElem [siteKey]="key" [size]="'normal'" [hl]="'es'" [theme]="'light'" [type]="'image'" formControlName="recaptcha">
     </ngx-recaptcha2>    
     <small *ngIf="error" class="text-danger font-weight-bold"><i class="fa fa-times"></i> {{errorMessage}} </small>
     <small *ngIf="success" class="text-success font-weight-bold"><i class="fas fa-check"></i> Empleado registrado correctamente. </small>

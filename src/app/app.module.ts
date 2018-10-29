@@ -24,6 +24,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerInterceptor } from './Services/Interceptors/SpinnerInterceptor';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { ReCaptcha2Component } from 'ngx-captcha';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
