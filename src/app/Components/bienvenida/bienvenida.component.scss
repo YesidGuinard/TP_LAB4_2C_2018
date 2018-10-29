@@ -18,6 +18,7 @@ $col) {
 .container-fluid{
     width: 100%;
     height: 100%;
+    padding: 30px;
     @media (min-width: 768px) {
         display: flex;
         align-items: center;
@@ -25,8 +26,32 @@ $col) {
     
 
     .principal{
-        padding: 30px;
         .descripcion{
+            /* Small devices (landscape phones, 544px and up) */
+            @media (min-width: 544px) {  
+                font-size: 12px;
+            }
+
+            /* Medium devices (tablets, 768px and up) */
+            @media (min-width: 768px) {  
+                font-size: 12px;
+            }
+
+            /* Large devices (desktops, 992px and up) */
+            @media (min-width: 992px) { 
+                font-size: 12px;
+            }
+
+            /* Extra large devices (large desktops, 1200px and up) */
+            @media (min-width: 1200px) {  
+                font-size: 12px;
+            }
+
+            /* Extra large devices (large desktops, 1200px and up) */
+            @media (min-width: 1800px) {  
+                font-size: 18px;
+            }
+
             border: 2px solid $color02;
             padding: 30px;
             color: #Fff;
