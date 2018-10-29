@@ -1,3 +1,4 @@
+import { EmpleadosBoardComponent } from './../Components/empleados-board/empleados-board.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BienvenidaComponent } from '../Components/bienvenida/bienvenida.component';
@@ -5,17 +6,23 @@ import { EmpleadosComponent } from '../Components/empleados/empleados.component'
 import { ClientesComponent } from '../Components/clientes/clientes.component';
 import { EmpleadosLoginComponent } from '../Components/empleados-login/empleados-login.component';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../auth/auth.guard'
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: BienvenidaComponent },
   {
-    path: 'Login', component: EmpleadosLoginComponent 
+    path: 'Login', component: EmpleadosLoginComponent
   },
   {
-    path: 'Empleados', 
+    path: 'Empleados',
     component: EmpleadosComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'Empleados',
+        component: EmpleadosBoardComponent
+      }
+    ]
   },
   {
     path: 'Clientes', component: ClientesComponent

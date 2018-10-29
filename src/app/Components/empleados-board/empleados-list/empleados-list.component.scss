@@ -1,0 +1,10 @@
+@import "../../../../assets/Estilos/estilos-generales.scss";
+
+a{
+    color: black;
+}
+
+a:hover{
+    text-decoration: none;
+    color: $color02;
+}

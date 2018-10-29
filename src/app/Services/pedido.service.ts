@@ -11,7 +11,7 @@ export class PedidoService {
   constructor(public miHttp: HttpBase<Pedido>) {
   }
 
-  public ListarPorMesa(codigoMesa : string): Observable<Pedido[]> {
-    return this.miHttp.httpGetO('pedido/listarPorMesa/'+codigoMesa);
+  public ListarPorMesa(codigoMesa: string): Observable<Pedido[]> {
+    return this.miHttp.httpGetO('pedido/listarPorMesa/' + codigoMesa);
   }
 }

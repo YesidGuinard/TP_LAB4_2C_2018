@@ -7,26 +7,29 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" href="#">Pedidos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="Empleados">Empleados</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" href="#">Mesas</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <span class="navbar-text"> <i class="far fa-id-card"></i> {{user.nombre}} || 
+            <span class="navbar-text"> <i class="far fa-id-card"></i> {{user.nombre}} ||
                 <i *ngIf="user.tipo === 'Cocinero'" class="fas fa-utensils"></i>
-                <i *ngIf="user.tipo === 'Socio'" class="far fa-handshake"></i> 
-                <i *ngIf="user.tipo === 'Bartender'" class="fas fa-cocktail"></i> 
+                <i *ngIf="user.tipo === 'Socio'" class="far fa-handshake"></i>
+                <i *ngIf="user.tipo === 'Bartender'" class="fas fa-cocktail"></i>
                 <i *ngIf="user.tipo === 'Mozo'" class="fas fa-user-tie"></i>
                 <i *ngIf="user.tipo === 'Cervecero'" class="fas fa-beer"></i>
                 {{user.tipo}} || </span>
-            <li class="nav-item"><a class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i> 
+            <li class="nav-item"><a class="nav-link" (click)="logout()"><i class="fa fa-sign-out"></i>
                     Desconectarse</a></li>
         </ul>
     </div>
 </nav>
-<div>
-    <p>Usuario: {{user.usuario}}</p>
-    <p>Nombre: {{user.nombre}}</p>
-    <p>Tipo: {{user.tipo}}</p>
-    <p>ID: {{user.id}}</p>
-</div>

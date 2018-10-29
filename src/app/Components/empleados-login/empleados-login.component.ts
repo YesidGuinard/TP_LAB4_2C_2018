@@ -20,11 +20,11 @@ export class EmpleadosLoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private jwt: JwtHelperService, private router: Router) {
     this.form = this.fb.group({
-        usuario: ['', Validators.required],
-        password: ['', Validators.required]
+      usuario: ['', Validators.required],
+      password: ['', Validators.required]
     });
 
-   }
+  }
 
   ngOnInit() {
   }
@@ -34,30 +34,31 @@ export class EmpleadosLoginComponent implements OnInit {
     this.error = false;
     if (this.form.valid) {
       const dataLogin: Login = new Login(this.form.get('usuario').value,
-                              this.form.get('password').value);
+        this.form.get('password').value);
       this.authService.Loguear(dataLogin)
-      .then(
-        response => {
-          if (response['Estado'] === 'OK') {
-            const token: JSON = this.jwt.decodeToken(response['Token']);
-            const user: User = new User(token['usuario'], token['tipo'], token['id'], token['nombre'], response['Token']);
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            localStorage.setItem('token', JSON.stringify(token));
-            if (!this.authService.redirectUrl) {
-              this.authService.redirectUrl = '/Empleados';
+        .then(
+          response => {
+            if (response['Estado'] === 'OK') {
+              const token: JSON = this.jwt.decodeToken(response['Token']);
+              const user: User = new User(token['usuario'], token['tipo'], token['id'], token['nombre'], response['Token']);
+              localStorage.setItem('currentUser', JSON.stringify(user));
+              localStorage.setItem('token', JSON.stringify(token));
+              if (!this.authService.redirectUrl) {
+                this.authService.redirectUrl = '/Empleados';
+              }
+              this.router.navigate([this.authService.redirectUrl]);
+            } else {
+              this.error = true;
+              this.errorMessage = response['Mensaje'];
             }
-            this.router.navigate([this.authService.redirectUrl]);
-          } else {
+          }
+        )
+        .catch(
+          response => {
             this.error = true;
             this.errorMessage = response['Mensaje'];
           }
-        }
-      )
-      .catch(
-        response => {
-          console.error(response);
-        }
-      );
+        );
     } else {
       this.errorMessage = 'Debe completar los campos correctamente.';
       this.error = true;

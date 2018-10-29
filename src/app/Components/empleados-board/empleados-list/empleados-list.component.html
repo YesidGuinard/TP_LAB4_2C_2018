@@ -1,0 +1,33 @@
+<table class="table table-sm table-hover table-light table-striped shadow p-3 mb-5 rounded">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Usuario</th>
+      <th>Fecha de Registro</th>
+      <th>Ultimo Login</th>
+      <th>Estado</th>
+      <th>N° de Operaciones</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let empleado of listaEmpleados">
+      <td>{{empleado.id}}</td>
+      <td>{{empleado.nombre}}</td>
+      <td>{{empleado.tipo}}</td>
+      <td>{{empleado.usuario}}</td>
+      <td>{{empleado.fechaRegistro}}</td>
+      <td>{{empleado.ultimoLogin}}</td>
+      <td>{{empleado.estado}}</td>
+      <td>{{empleado.cantidad_operaciones}}</td>
+      <td>
+        <a href="" data-toggle="tooltip" title="Editar">| <i class="fas fa-user-edit"></i> | </a>
+        <a *ngIf="empleado.estado === 'S' || empleado.estado === 'B'" href="" data-toggle="tooltip" title="Activar"><i class="fas fa-user-plus"></i> | </a>
+        <a *ngIf="empleado.estado === 'A'" href="" data-toggle="tooltip" title="Suspender"><i class="fas fa-user-minus"></i> | </a> 
+        <a *ngIf="empleado.estado === 'A' || empleado.estado === 'S'" href="" data-toggle="tooltip" title="Baja"><i class="fas fa-user-times"></i> |</a>  
+      </td>
+    </tr>
+  </tbody>
+</table>

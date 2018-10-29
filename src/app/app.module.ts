@@ -1,3 +1,7 @@
+import { EmpleadoService } from './Services/empleado.service';
+import { EmpleadosRegistroComponent } from './Components/empleados-board/empleados-registro/empleados-registro.component';
+import { EmpleadosListComponent } from './Components/empleados-board/empleados-list/empleados-list.component';
+import { EmpleadosBoardComponent } from './Components/empleados-board/empleados-board.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -19,6 +23,7 @@ import { JwtInterceptor } from './Services/Interceptors/JWTInterceptor';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerInterceptor } from './Services/Interceptors/SpinnerInterceptor';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -31,7 +36,10 @@ export function getAccessToken() {
     NavegacionComponent,
     ClientesComponent,
     EmpleadosComponent,
-    EmpleadosLoginComponent
+    EmpleadosLoginComponent,
+    EmpleadosBoardComponent,
+    EmpleadosListComponent,
+    EmpleadosRegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +53,7 @@ export function getAccessToken() {
     MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxCaptchaModule,
     MatExpansionModule,
     [JwtModule.forRoot({
       config: {
@@ -71,7 +80,8 @@ export function getAccessToken() {
       multi: true
     },
     PedidoService,
-    JwtHelperService
+    JwtHelperService,
+    EmpleadoService
   ],
   bootstrap: [AppComponent]
 })

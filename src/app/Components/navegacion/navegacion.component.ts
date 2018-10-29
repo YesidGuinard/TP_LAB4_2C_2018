@@ -11,18 +11,18 @@ import { Router } from '@angular/router';
 })
 export class NavegacionComponent implements OnInit {
 
-  user : User;
+  user: User;
 
-  constructor(private authService : AuthService, private router : Router) { 
-    this.user = JSON.parse(localStorage.getItem("currentUser"));
+  constructor(private authService: AuthService, private router: Router) {
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
 
 

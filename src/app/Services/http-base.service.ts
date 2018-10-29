@@ -27,8 +27,8 @@ export class HttpBase<T> {
     .catch( this.handleError );
   }
 
-  public httpPostP( url: string, objeto: JSON) {
-    return this.http.post( this.urlBase + url, objeto).toPromise();
+  public httpPostP( url: string, request: Object) {
+    return this.http.post( this.urlBase + url, request).toPromise();
   }
 
   // tslint:disable-next-line:no-shadowed-variable
