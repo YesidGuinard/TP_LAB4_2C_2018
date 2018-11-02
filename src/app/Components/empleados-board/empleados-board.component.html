@@ -1,9 +1,14 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row justify-content-center align-items-center">
     <div class="contenedor col-3">
       <app-empleados-registro (registradoCorrectamente)="recargarLista()"></app-empleados-registro>
     </div>
     <div class="contenedor col-8">
+      <app-empleados-charts></app-empleados-charts>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center"> 
+    <div class="contenedor col-11 ">
       <app-empleados-list></app-empleados-list>
     </div>
   </div>

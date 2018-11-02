@@ -7,26 +7,39 @@ import { AuthService } from '../Services/auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     let url: string = state.url;
-    return this.checkLogin(url);
+    let roles = next.data["roles"] as Array<string>;
+    return this.checkLogin(url, roles);
   }
 
-  checkLogin(url: string): boolean {
-    if (localStorage.getItem("currentUser")) 
-    { 
-      return true; 
+  checkLogin(url: string, roles: Array<string>): boolean {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    let check: boolean = false;
+    if (user) {
+      // Store the attempted URL for redirecting
+      this.authService.redirectUrl = '/Empleados';
+      roles.forEach(element => {
+        if (user.tipo === element) {
+          check = true;
+        }
+      });
     }
-    
-    // Store the attempted URL for redirecting
-    this.authService.redirectUrl = url;
+    else {
+      // Store the attempted URL for redirecting
+      this.authService.redirectUrl = url;
+    }
 
-    // Navigate to the login page with extras
-    this.router.navigate(['/Login']);
-    return false;
+    if (!check) {
+      this.authService.logout();
+      // Navigate to the login page with extras
+      this.router.navigate(['/Login']);
+    }
+
+    return check;
   }
 }

@@ -17,10 +17,13 @@ const routes: Routes = [
     path: 'Empleados',
     component: EmpleadosComponent,
     canActivate: [AuthGuard],
+    data: { roles: ['Socio','Cocinero','Bartender','Cervecero','Mozo'] },
     children: [
       {
         path: 'Empleados',
-        component: EmpleadosBoardComponent
+        component: EmpleadosBoardComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['Socio'] }
       }
     ]
   },
