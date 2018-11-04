@@ -4,17 +4,17 @@ Este proyecto se encuentra alojado en https://mauriciocerizza.github.io/TP_LAB4_
 
 ## Avances
 ### 25/10
-► Login
+► Login  <br>
 ► Perfiles
 
 ### 01/11
-► Subido a la web
-► Registro
+► Subido a la web <br>
+► Registro <br>
 ► Captcha en registro
 
 ### 08/11
-► Generar Excel y PDF
-► Captcha Propio
-► Readme
-► Acceso rápido
+► Generar Excel y PDF <br>
+► Captcha Propio <br>
+► Readme <br>
+► Acceso rápido <br>
 ► Highcharts / Estadísticas
