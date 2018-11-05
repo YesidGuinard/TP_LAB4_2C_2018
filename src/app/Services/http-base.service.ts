@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map, tap, catchError, delay } from 'rxjs/operators';
 
 @Injectable()
-export class HttpBase<T> {
+export class HttpBase {
   urlBase: String = 'https://restaurante-cerizza.herokuapp.com/';
 
   constructor( public http: HttpClient ) {

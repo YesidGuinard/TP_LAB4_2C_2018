@@ -20,3 +20,7 @@ HTML, body {
     width: 100%;
     @include AplicarFondoAzul();
 } 
+
+.highcharts-container {
+    margin: 0 auto;
+  }

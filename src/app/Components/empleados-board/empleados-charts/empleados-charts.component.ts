@@ -1,5 +1,6 @@
+import { EmpleadoService } from './../../../Services/empleado.service';
 import { Component, OnInit } from '@angular/core';
-import * as Highcharts from 'highcharts';
+import { OperacionesPorSector } from 'src/app/Model/OperacionesPorSector';
 
 @Component({
   selector: 'app-empleados-charts',
@@ -7,16 +8,56 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./empleados-charts.component.scss']
 })
 export class EmpleadosChartsComponent implements OnInit {
-  Highcharts = Highcharts; // required
-  chartConstructor = 'chart'; // optional string, defaults to 'chart'
-  chartOptions = {  }; // required
-  chartCallback = function (chart) { } // optional function, defaults to null
-  updateFlag = false; // optional boolean
-  oneToOneFlag = true; // optional boolean, defaults to false
-  runOutsideAngular = false; // optional boolean, defaults to false
-  constructor() { }
+  chartOptions: Object; // required
+  operacionesPorSector: OperacionesPorSector[];
+
+
+  constructor(private empleadoService: EmpleadoService) {
+
+    empleadoService.CantidadOperacionesPorSector().subscribe(response => {
+      const datos: { name: String, y: number}[] = new Array();
+      response.forEach(element => {
+        datos.push({
+          name: element.sector,
+          y: parseInt(element.cantidad_operaciones, 10)
+        });
+      });
+      console.log(datos);
+      this.chartOptions = {
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: null,
+          plotShadow: false,
+          type: 'pie',
+          style: {
+            textAlign: 'center'
+          }
+        },
+        title: {
+          text: 'Porcentaje de Operaciones por Sector'
+        },
+        tooltip: {
+          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+              enabled: true,
+              format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+              connectorColor: 'silver'
+            }
+          }
+        },
+        series: [{
+          name: 'Operaciones por Sector',
+          data: datos
+        }]
+      };
+    });
+  }
 
   ngOnInit() {
   }
-
 }

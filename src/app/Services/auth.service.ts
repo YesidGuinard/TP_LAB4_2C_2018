@@ -10,7 +10,7 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(public miHttp: HttpBase<any>) {
+  constructor(public miHttp: HttpBase) {
   }
 
   Loguear(dataLogin: Login) {

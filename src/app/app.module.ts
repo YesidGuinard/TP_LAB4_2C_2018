@@ -25,7 +25,7 @@ import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerInterceptor } from './Services/Interceptors/SpinnerInterceptor';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ReCaptcha2Component } from 'ngx-captcha';
-import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartModule } from 'angular2-highcharts';
 import { EmpleadosChartsComponent } from './Components/empleados-board/empleados-charts/empleados-charts.component';
 
 export function getAccessToken() {
@@ -59,7 +59,9 @@ export function getAccessToken() {
     HttpClientModule,
     NgxCaptchaModule,
     MatExpansionModule,
-    HighchartsChartModule,
+    ChartModule.forRoot(
+    require('highcharts'),
+    require('highcharts/modules/exporting')),
     [JwtModule.forRoot({
       config: {
         tokenGetter: (getAccessToken),

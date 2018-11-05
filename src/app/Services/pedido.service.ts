@@ -8,10 +8,10 @@ import { Pedido } from '../Model/Pedido';
   providedIn: 'root'
 })
 export class PedidoService {
-  constructor(public miHttp: HttpBase<Pedido>) {
+  constructor(public miHttp: HttpBase) {
   }
 
   public ListarPorMesa(codigoMesa: string): Observable<Pedido[]> {
-    return this.miHttp.httpGetO('pedido/listarPorMesa/' + codigoMesa);
+    return this.miHttp.httpGetO<Pedido[]>('pedido/listarPorMesa/' + codigoMesa);
   }
 }
