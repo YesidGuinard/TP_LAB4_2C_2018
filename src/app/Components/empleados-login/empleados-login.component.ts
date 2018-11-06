@@ -20,8 +20,8 @@ export class EmpleadosLoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private authService: AuthService, private jwt: JwtHelperService, private router: Router) {
     this.form = this.fb.group({
-      usuario: ['', Validators.required],
-      password: ['', Validators.required]
+      user: ['', Validators.required],
+      pass: ['', Validators.required]
     });
 
   }
@@ -29,12 +29,43 @@ export class EmpleadosLoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  CargarDefault(tipo: string) {
+    let dataLogin: Login = null;
+    switch (tipo) {
+      case 'S':
+        dataLogin = new Login('admin', 'admin');
+        this.form.setValue(dataLogin);
+        this.Submit();
+        break;
+      case 'B':
+        dataLogin = new Login('Matias', '1234');
+        this.form.setValue(dataLogin);
+        this.Submit();
+        break;
+      case 'CE':
+        dataLogin = new Login('cervecero', 'cervecero');
+        this.form.setValue(dataLogin);
+        this.Submit();
+        break;
+      case 'CO':
+        dataLogin = new Login('cocinero', 'cocinero');
+        this.form.setValue(dataLogin);
+        this.Submit();
+        break;
+      case 'M':
+        dataLogin = new Login('mozo', 'mozo');
+        this.form.setValue(dataLogin);
+        this.Submit();
+        break;
+    }
+  }
+
   public Submit(): void {
     this.errorMessage = '';
     this.error = false;
     if (this.form.valid) {
-      const dataLogin: Login = new Login(this.form.get('usuario').value,
-        this.form.get('password').value);
+      const dataLogin: Login = new Login(this.form.get('user').value,
+        this.form.get('pass').value);
       this.authService.Loguear(dataLogin)
         .then(
           response => {
