@@ -22,7 +22,7 @@ export class EmpleadosChartsComponent implements OnInit {
           y: parseInt(element.cantidad_operaciones, 10)
         });
       });
-      console.log(datos);
+
       this.chartOptions = {
         chart: {
           plotBackgroundColor: null,

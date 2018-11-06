@@ -1,14 +1,17 @@
 <table class="table table-sm table-hover table-light table-striped shadow p-3 mb-5 rounded">
   <thead>
+    <tr>
+      <th class="text-center" colspan="8"><b>Lista de Empleados</b><app-csv class="float-right csv" [data]="data" [filename]="generarNombreCsv()" [options]="options"></app-csv></th>
+    </tr>
     <tr>      
       <th>Nombre</th>
       <th>Tipo</th>
       <th>Usuario</th>
       <th>Fecha de Registro</th>
-      <th>Ultimo Login</th>
+      <th>Último Login</th>
       <th>Estado</th>
       <th>N° de Operaciones</th>
-      <th>Acciones</th>
+      <th>Acciones</th> 
     </tr>
   </thead>
   <tbody>

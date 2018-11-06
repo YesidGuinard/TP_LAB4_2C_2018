@@ -1,3 +1,4 @@
+import { CsvComponent } from './Components/Common/csv/csv.component';
 import { EmpleadoService } from './Services/empleado.service';
 import { EmpleadosRegistroComponent } from './Components/empleados-board/empleados-registro/empleados-registro.component';
 import { EmpleadosListComponent } from './Components/empleados-board/empleados-list/empleados-list.component';
@@ -27,6 +28,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { ReCaptcha2Component } from 'ngx-captcha';
 import { ChartModule } from 'angular2-highcharts';
 import { EmpleadosChartsComponent } from './Components/empleados-board/empleados-charts/empleados-charts.component';
+import { Angular2CsvModule } from 'angular2-csv';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -43,7 +45,8 @@ export function getAccessToken() {
     EmpleadosBoardComponent,
     EmpleadosListComponent,
     EmpleadosRegistroComponent,
-    EmpleadosChartsComponent
+    EmpleadosChartsComponent,
+    CsvComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ export function getAccessToken() {
     ReactiveFormsModule,
     HttpClientModule,
     NgxCaptchaModule,
+    Angular2CsvModule,
     MatExpansionModule,
     ChartModule.forRoot(
     require('highcharts'),
