@@ -29,6 +29,7 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 import { ChartModule } from 'angular2-highcharts';
 import { EmpleadosChartsComponent } from './Components/empleados-board/empleados-charts/empleados-charts.component';
 import { Angular2CsvModule } from 'angular2-csv';
+import { EmpleadosModifyComponent } from './Components/empleados-board/empleados-modify/empleados-modify.component';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -46,6 +47,7 @@ export function getAccessToken() {
     EmpleadosListComponent,
     EmpleadosRegistroComponent,
     EmpleadosChartsComponent,
+    EmpleadosModifyComponent,
     CsvComponent
   ],
   imports: [

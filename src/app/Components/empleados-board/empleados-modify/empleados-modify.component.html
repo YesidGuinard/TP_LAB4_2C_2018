@@ -1,0 +1,49 @@
+<div class="modal" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modificación de Empleado</h5>
+        <button type="button" class="close" (click)="cerrar()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (keyup.enter)="Submit()">
+          <div class="form-group">
+            <label for="usuario">Usuario: </label>
+            <input type="text" id="musuario" formControlName="usuario" class="form-control" placeholder="Usuario"
+              [ngClass]="{ 'is-invalid': form.controls['usuario'].touched && form.controls['usuario'].invalid }">
+            <div *ngIf="form.controls['usuario'].touched && form.controls['usuario'].invalid" class="invalid-feedback"
+              autocomplete="username">
+              <div *ngIf="form.controls['usuario'].errors.required">Debe ingresar un usuario.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Nombre: </label>
+            <input type="text" id="mname" formControlName="name" class="form-control" placeholder="Nombre" [ngClass]="{ 'is-invalid': form.controls['name'].touched && form.controls['name'].invalid }">
+            <div *ngIf="form.controls['name'].touched && form.controls['name'].invalid" class="invalid-feedback">
+              <div *ngIf="form.controls['name'].errors.required">Debe ingresar un nombre.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="tipo">Tipo de Empleado: </label>
+            <select id="mtipo" formControlName="tipo" class="form-control">
+              <option value="Socio">Socio</option>
+              <option value="Cocinero">Cocinero</option>
+              <option value="Mozo">Mozo</option>
+              <option value="Bartender">Bartender</option>
+              <option value="Cervecero">Cervecero</option>
+            </select>
+          </div>
+          <small *ngIf="error" class="text-danger font-weight-bold"><i class="fa fa-times"></i> {{errorMessage}}
+          </small>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" (click)="Restablecer()">Restablecer</button>
+        <button type="button" class="btn btn-secondary" (click)="cerrar()">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="Submit()">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

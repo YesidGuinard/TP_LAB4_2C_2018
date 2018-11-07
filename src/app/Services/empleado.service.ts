@@ -26,6 +26,31 @@ export class EmpleadoService {
     return this.miHttp.httpPostP('empleados/registrarEmpleado/', request);
   }
 
+  public Modificar(usuario: string, id: number, nombre: string, tipo: string): Promise<object> {
+    const request: Object = {
+      id: id,
+      usuario: usuario,
+      nombre: nombre,
+      tipo: tipo
+    };
+    return this.miHttp.httpPostP('empleados/modificar/', request);
+  }
+
+  public Baja(id: number): Promise<object> {
+    return this.miHttp.httpDeleteP('empleados/' + id);
+  }
+
+  public Suspender(id: number): Promise<object> {
+    return this.miHttp.httpGetP('empleados/suspender/' + id);
+  }
+
+  public CambiarClave(newPassword: string): Promise<object> {
+    const request: Object = {
+      clave: newPassword
+    };
+    return this.miHttp.httpPostP('empleados/cambiarClave/', request);
+  }
+
   public CantidadOperacionesPorSector(): Observable<OperacionesPorSector[]> {
     return this.miHttp.httpGetO<OperacionesPorSector[]>('empleados/cantidadOperacionesPorSector');
   }

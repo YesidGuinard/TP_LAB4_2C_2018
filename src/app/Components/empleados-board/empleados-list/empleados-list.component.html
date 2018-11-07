@@ -24,7 +24,7 @@
       <td>{{empleado.estado}}</td>
       <td>{{empleado.cantidad_operaciones}}</td>
       <td>
-        <a href="" data-toggle="tooltip" title="Editar">| <i class="fas fa-user-edit"></i> | </a>
+        <a data-toggle="tooltip" title="Editar" (click)="showModifyModal(empleado)">| <i class="fas fa-user-edit"></i> | </a>
         <a *ngIf="empleado.estado === 'S' || empleado.estado === 'B'" href="" data-toggle="tooltip" title="Activar"><i class="fas fa-user-plus"></i> | </a>
         <a *ngIf="empleado.estado === 'A'" href="" data-toggle="tooltip" title="Suspender"><i class="fas fa-user-minus"></i> | </a> 
         <a *ngIf="empleado.estado === 'A' || empleado.estado === 'S'" href="" data-toggle="tooltip" title="Baja"><i class="fas fa-user-times"></i> |</a>  
@@ -32,3 +32,5 @@
     </tr>
   </tbody>
 </table>
+
+<app-empleados-modify #modalModify [showModal]="showModal" (closeModal)="showModal = false"></app-empleados-modify>
