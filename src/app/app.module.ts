@@ -106,7 +106,8 @@ export function highchartsFactory() {
     },
     PedidoService,
     JwtHelperService,
-    EmpleadoService
+    EmpleadoService,
+    NgxSpinnerService
   ],
   bootstrap: [AppComponent]
 })

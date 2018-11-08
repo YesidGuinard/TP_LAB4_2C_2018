@@ -1,7 +1,7 @@
-<router-outlet></router-outlet>
-<ngx-spinner *ngIf="showSpinner"
+<ngx-spinner [ngClass]="{'activo': showSpinner}" 
 bdColor = "rgba(51,51,51,0.63)"
 size = "large"
 color = "#f67280"
 type = "square-loader"
 ></ngx-spinner>
+<router-outlet></router-outlet>
