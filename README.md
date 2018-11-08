@@ -20,7 +20,6 @@ Este proyecto se encuentra alojado en https://mauriciocerizza.github.io/TP_LAB4_
 
 ### 08/11
 ► Generar Excel y PDF <br>
-► Captcha Propio <br>
 ► ABM de empleado (baja, suspensión, modificación, reactivación) <br>
 ► Readme <br>
 ► Acceso rápido <br>

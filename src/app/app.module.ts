@@ -30,10 +30,20 @@ import { ChartModule } from 'angular2-highcharts';
 import { EmpleadosChartsComponent } from './Components/empleados-board/empleados-charts/empleados-charts.component';
 import { Angular2CsvModule } from 'angular2-csv';
 import { EmpleadosModifyComponent } from './Components/empleados-board/empleados-modify/empleados-modify.component';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
 }
+
+export function highchartsFactory() {
+  const hc = require('highcharts');
+  const dd = require('highcharts/modules/exporting');
+  dd(hc);
+
+  return hc;
+}
+
 
 @NgModule({
   declarations: [
@@ -65,9 +75,7 @@ export function getAccessToken() {
     NgxCaptchaModule,
     Angular2CsvModule,
     MatExpansionModule,
-    ChartModule.forRoot(
-    require('highcharts'),
-    require('highcharts/modules/exporting')),
+    ChartModule,
     [JwtModule.forRoot({
       config: {
         tokenGetter: (getAccessToken),
@@ -91,6 +99,10 @@ export function getAccessToken() {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
+    },
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
     },
     PedidoService,
     JwtHelperService,
