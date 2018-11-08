@@ -40,8 +40,12 @@ export class EmpleadoService {
     return this.miHttp.httpDeleteP('empleados/' + id);
   }
 
+  public Activar(id: number): Promise<object> {
+    return this.miHttp.httpGetP('empleados/activar/' + id);
+  }
+
   public Suspender(id: number): Promise<object> {
-    return this.miHttp.httpGetP('empleados/suspender/' + id);
+    return this.miHttp.httpDeleteP('empleados/suspender/' + id);
   }
 
   public CambiarClave(newPassword: string): Promise<object> {

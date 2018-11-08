@@ -1,3 +1,4 @@
+import { EmpleadoService } from './../../../Services/empleado.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -9,19 +10,23 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class EmpleadosModifyComponent implements OnInit {
   @Input() showModal: boolean;
   @Output() closeModal: EventEmitter<void>;
+  @Output() modificadoCorrectamente: EventEmitter<void>;
   id: number;
   usuario: string;
   nombre: string;
   tipo: string;
   form: FormGroup;
+  errorMessage: string;
+  error: boolean;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private empleadoService: EmpleadoService) {
     this.form = this.fb.group({
       usuario: [''],
       name: [''],
       tipo: ['']
     });
 
+    this.modificadoCorrectamente = new EventEmitter<void>();
     this.closeModal = new EventEmitter<void>();
   }
 
@@ -49,7 +54,36 @@ export class EmpleadosModifyComponent implements OnInit {
   }
 
   Submit() {
-    console.log('Probando');
+    this.errorMessage = '';
+    this.error = false;
+    if (this.form.valid) {
+      const usuario = this.form.get('usuario').value;
+      const nombre = this.form.get('name').value;
+      const tipo = this.form.get('tipo').value;
+      this.empleadoService.Modificar(usuario, this.id, nombre, tipo)
+        .then(
+          response => {
+            console.log(response);
+            if (response['Estado'] === 'OK') {
+              this.modificadoCorrectamente.emit();
+              this.closeModal.emit();
+            } else {
+              this.error = true;
+              this.errorMessage = response['Mensaje'];
+            }
+          }
+        )
+        .catch(
+          error => {
+            this.error = true;
+            this.errorMessage = error['Mensaje'];
+            console.error(error);
+          }
+        );
+    } else {
+      this.errorMessage = 'Debe completar los campos correctamente.';
+      this.error = true;
+    }
   }
 
   cerrar() {

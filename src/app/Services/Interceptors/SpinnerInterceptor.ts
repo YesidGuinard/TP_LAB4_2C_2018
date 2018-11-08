@@ -9,7 +9,6 @@ export class SpinnerInterceptor implements HttpInterceptor {
     constructor(private spinner: NgxSpinnerService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log('interceptando');
         this.spinner.show();
         return next.handle(request).pipe(tap(
             (event: HttpEvent<any>) => {

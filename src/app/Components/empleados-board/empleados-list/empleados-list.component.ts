@@ -45,6 +45,9 @@ export class EmpleadosListComponent implements OnInit {
       data => {
         this.listaEmpleados = data;
         this.data = this.listaEmpleados;
+      },
+      error => {
+        console.error(error);
       }
     );
   }
@@ -57,5 +60,32 @@ export class EmpleadosListComponent implements OnInit {
   generarNombreCsv(): string {
     const nombre = 'ListaEmpleados ' + new Date().toDateString();
     return nombre;
+  }
+
+  darDeBaja(id: number) {
+    this.empleadoService.Baja(id).then( response => {
+      this.cargarLista();
+    },
+    error => {
+      console.error(error);
+    });
+  }
+
+  suspender(id: number) {
+    this.empleadoService.Suspender(id).then( response => {
+      this.cargarLista();
+    },
+    error => {
+      console.error(error);
+    });
+  }
+
+  activar(id: number) {
+    this.empleadoService.Activar(id).then( response => {
+      this.cargarLista();
+    },
+    error => {
+      console.error(error);
+    });
   }
 }

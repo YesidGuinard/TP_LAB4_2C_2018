@@ -8,4 +8,18 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AppComponent {
   title = 'Comanda';
+  showSpinner: boolean;
+  /**
+   *
+   */
+  constructor(private spinner: NgxSpinnerService) {
+    this.showSpinner = false;
+    this.spinner.spinnerObservable.subscribe( x => {
+      if (x) {
+        this.showSpinner = true;
+      } else {
+        this.showSpinner = false;
+      }
+    });
+  }
 }
