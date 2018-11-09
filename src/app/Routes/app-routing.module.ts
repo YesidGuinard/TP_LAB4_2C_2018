@@ -28,7 +28,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'Clientes', component: ClientesComponent
+    path: 'Clientes/:codMesa', component: ClientesComponent
     // children: [
     //   {
     //     path: ''

@@ -1,5 +1,4 @@
-ng build --prod --base-href "https://mauricioCerizza.github.io/TP_LAB4_2C_201
-8/"
+ng build --prod --base-href "https://mauricioCerizza.github.io/TP_LAB4_2C_2018/"
 
 npx ngh --no-silent
 

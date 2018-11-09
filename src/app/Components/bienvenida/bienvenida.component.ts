@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PedidoService } from '../../Services/pedido.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-bienvenida',
@@ -12,7 +13,7 @@ export class BienvenidaComponent implements OnInit {
   public mesaGroup: FormGroup;
   public respuestaInvalida : boolean;
 
-  constructor(private fb: FormBuilder, private pedidoService: PedidoService) {
+  constructor(private fb: FormBuilder, private pedidoService: PedidoService, private router: Router) {
     this.mesaGroup = this.fb.group({
       mesa: ['', [Validators.required, Validators.pattern('^MES\\d{2}')]]
     });
@@ -31,7 +32,7 @@ export class BienvenidaComponent implements OnInit {
             this.respuestaInvalida = true;
           }
           else{
-            
+            this.router.navigate(['/Clientes/', codigoMesa]);
           }
         });
     }

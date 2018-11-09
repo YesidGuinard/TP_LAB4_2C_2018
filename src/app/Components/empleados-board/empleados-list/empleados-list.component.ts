@@ -14,7 +14,7 @@ export class EmpleadosListComponent implements OnInit {
   @ViewChild('modalModify') modalModify: EmpleadosModifyComponent;
   public listaEmpleados: Empleado[];
   options: Object = {
-    fieldSeparator: ',',
+    fieldSeparator: ';',
     quoteStrings: '"',
     decimalseparator: '.',
     showLabels: true,

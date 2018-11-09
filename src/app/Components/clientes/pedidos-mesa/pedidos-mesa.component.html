@@ -1,0 +1,24 @@
+<table class="table table-sm table-hover table-light table-striped shadow p-3 mb-5 rounded">
+  <thead>
+    <tr>      
+      <th>Nombre</th>
+      <th>Tipo</th>
+      <th>Usuario</th>
+      <th>Fecha de Registro</th>
+      <th>Último Login</th>
+      <th>Estado</th>
+      <th>N° de Operaciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of listaPedidos">
+      <td>{{pedido.mesa}}</td>
+      <td>{{pedido.descripcion}}</td>
+      <td>{{pedido.nombre_cliente}}</td>
+      <td>{{pedido.nombre_mozo}}</td>
+      <td>{{pedido.hora_entrega_estimada}}</td>
+      <td>{{pedido.sector}}</td>
+      <td>{{pedido.estado}}</td>
+    </tr>
+  </tbody>
+</table>

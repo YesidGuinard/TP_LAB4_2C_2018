@@ -16,7 +16,7 @@ export class EmpleadoService {
     return this.miHttp.httpGetO<Empleado[]>('empleados/listar/');
   }
 
-  public Registrar(usuario: string, password: string, nombre: string, tipo: string): Promise<object> {
+  public Registrar(usuario: string, password: string, nombre: string, tipo: string): Promise<Object> {
     const request: Object = {
       usuario: usuario,
       clave: password,
@@ -26,7 +26,7 @@ export class EmpleadoService {
     return this.miHttp.httpPostP('empleados/registrarEmpleado/', request);
   }
 
-  public Modificar(usuario: string, id: number, nombre: string, tipo: string): Promise<object> {
+  public Modificar(usuario: string, id: number, nombre: string, tipo: string): Promise<Object> {
     const request: Object = {
       id: id,
       usuario: usuario,
@@ -36,19 +36,19 @@ export class EmpleadoService {
     return this.miHttp.httpPostP('empleados/modificar/', request);
   }
 
-  public Baja(id: number): Promise<object> {
+  public Baja(id: number): Promise<Object> {
     return this.miHttp.httpDeleteP('empleados/' + id);
   }
 
-  public Activar(id: number): Promise<object> {
+  public Activar(id: number): Promise<Object> {
     return this.miHttp.httpGetP('empleados/activar/' + id);
   }
 
-  public Suspender(id: number): Promise<object> {
+  public Suspender(id: number): Promise<Object> {
     return this.miHttp.httpDeleteP('empleados/suspender/' + id);
   }
 
-  public CambiarClave(newPassword: string): Promise<object> {
+  public CambiarClave(newPassword: string): Promise<Object> {
     const request: Object = {
       clave: newPassword
     };

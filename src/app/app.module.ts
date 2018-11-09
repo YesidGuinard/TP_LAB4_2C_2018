@@ -31,6 +31,7 @@ import { EmpleadosChartsComponent } from './Components/empleados-board/empleados
 import { Angular2CsvModule } from 'angular2-csv';
 import { EmpleadosModifyComponent } from './Components/empleados-board/empleados-modify/empleados-modify.component';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import { PedidosMesaComponent } from './Components/clientes/pedidos-mesa/pedidos-mesa.component';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -58,7 +59,8 @@ export function highchartsFactory() {
     EmpleadosRegistroComponent,
     EmpleadosChartsComponent,
     EmpleadosModifyComponent,
-    CsvComponent
+    CsvComponent,
+    PedidosMesaComponent
   ],
   imports: [
     BrowserModule,
