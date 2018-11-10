@@ -15,13 +15,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let empleado of listaEmpleados">
+    <tr *ngFor="let empleado of listaEmpleados | Ordenar: 'nombre' : false">
       <td>{{empleado.nombre}}</td>
       <td>{{empleado.tipo}}</td>
       <td>{{empleado.usuario}}</td>
-      <td>{{empleado.fechaRegistro}}</td>
-      <td>{{empleado.ultimoLogin}}</td>
-      <td>{{empleado.estado}}</td>
+      <td>{{empleado.fechaRegistro | date: 'dd/MM/yyyy'}}</td>
+      <td>{{empleado.ultimoLogin | date: 'dd/MM/yyyy'}}</td> 
+      <td>{{empleado.estado | Estado}}</td> 
       <td>{{empleado.cantidad_operaciones}}</td>
       <td>
         <a data-toggle="tooltip" title="Editar" (click)="showModifyModal(empleado)">| <i class="fas fa-user-edit"></i> | </a>

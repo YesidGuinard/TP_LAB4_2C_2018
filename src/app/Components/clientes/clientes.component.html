@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-7">
-            <app-pedidos-mesa [listaPedidos]="listaPedidos"></app-pedidos-mesa>
+            <app-pedidos-mesa [listaPedidos]="listaPedidos" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
         </div>
     </div>
 </div>

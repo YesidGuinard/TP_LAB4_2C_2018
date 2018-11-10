@@ -1,10 +1,15 @@
 <table class="table table-sm table-hover table-light table-striped shadow p-3 mb-5 rounded">
   <thead>
     <tr>
+      <th class="text-center" colspan="8"><b>Lista de Pedidos</b>
+        <button class="float-right btn btn-outline-primary btn-sm" (click)="refrescar()"><i class="fas fa-sync-alt"></i> Refrescar</button>
+      </th>
+    </tr>
+    <tr>
       <th>Mesa</th>
       <th>Pedido</th>
       <th>Estado</th>
-      <th>Hora de Entrega Estimada</th>
+      <th>Tiempo Estimado</th>
       <th>Precio</th>
       <th>Cliente</th>
       <th>Mozo</th>
@@ -24,7 +29,7 @@
       <td>$ {{pedido.importe}}</td>
       <td>{{pedido.nombre_cliente}}</td>
       <td>{{pedido.nombre_mozo}}</td>
-      <td>{{pedido.sector}}</td>
+      <td>{{pedido.sector | Sector}}</td>
     </tr>
   </tbody>
   <tfoot>

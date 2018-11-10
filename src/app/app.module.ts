@@ -32,6 +32,9 @@ import { Angular2CsvModule } from 'angular2-csv';
 import { EmpleadosModifyComponent } from './Components/empleados-board/empleados-modify/empleados-modify.component';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 import { PedidosMesaComponent } from './Components/clientes/pedidos-mesa/pedidos-mesa.component';
+import { OrdenarPipe } from './Pipes/ordenar.pipe';
+import { EstadoPipe } from './Pipes/Estado.pipe';
+import { SectorPipe } from './Pipes/Sector.pipe';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -60,7 +63,10 @@ export function highchartsFactory() {
     EmpleadosChartsComponent,
     EmpleadosModifyComponent,
     CsvComponent,
-    PedidosMesaComponent
+    PedidosMesaComponent,
+    OrdenarPipe,
+    EstadoPipe,
+    SectorPipe
   ],
   imports: [
     BrowserModule,

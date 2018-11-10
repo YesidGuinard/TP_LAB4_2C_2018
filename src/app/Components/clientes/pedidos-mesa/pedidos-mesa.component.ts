@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pedido } from './../../../Model/Pedido';
 import { PedidoService } from './../../../Services/pedido.service';
 
@@ -9,7 +9,9 @@ import { PedidoService } from './../../../Services/pedido.service';
 })
 export class PedidosMesaComponent implements OnInit {
   @Input() listaPedidos: Pedido[];
+  @Output() refrescarEvent: EventEmitter<void>;
   constructor() {
+    this.refrescarEvent = new EventEmitter<void>();
   }
 
   ngOnInit() {
@@ -26,5 +28,9 @@ export class PedidosMesaComponent implements OnInit {
     }
 
     return total;
+  }
+
+  refrescar() {
+    this.refrescarEvent.emit();
   }
 }
