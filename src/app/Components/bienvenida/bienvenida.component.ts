@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { PedidoService } from '../../Services/pedido.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class BienvenidaComponent implements OnInit {
 
   public mesaGroup: FormGroup;
-  public respuestaInvalida : boolean;
+  public respuestaInvalida: boolean;
+  @ViewChild('btnClose') btnClose: ElementRef;
 
   constructor(private fb: FormBuilder, private pedidoService: PedidoService, private router: Router) {
     this.mesaGroup = this.fb.group({
@@ -24,19 +25,18 @@ export class BienvenidaComponent implements OnInit {
   }
 
   public ValidarMesa() {
-    if(this.mesaGroup.get('mesa').valid){
-      let codigoMesa: string = this.mesaGroup.get('mesa').value;
+    if (this.mesaGroup.get('mesa').valid) {
+      const codigoMesa: string = this.mesaGroup.get('mesa').value;
       this.pedidoService.ListarPorMesa(codigoMesa).subscribe(
         response => {
-          if(response.length == 0){
+          if (response.length === 0) {
             this.respuestaInvalida = true;
-          }
-          else{
+          } else {
             this.router.navigate(['/Clientes/', codigoMesa]);
+            this.btnClose.nativeElement.click();
           }
         });
-    }
-    else{
+    } else {
       this.mesaGroup.get('mesa').markAsTouched();
     }
   }

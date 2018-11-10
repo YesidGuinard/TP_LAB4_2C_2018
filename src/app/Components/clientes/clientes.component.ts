@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Pedido } from './../../Model/Pedido';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { PedidoService } from 'src/app/Services/pedido.service';
 
 @Component({
   selector: 'app-clientes',
@@ -8,17 +10,29 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
+  @Output() listaPedidos: Pedido[];
   codigoMesa: string;
-  constructor(
-  private route: ActivatedRoute,
-  private router: Router
-) {}
 
-  ngOnInit() {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private pedidosService: PedidoService
+  ) {
     this.route.paramMap.subscribe( x => {
       this.codigoMesa = x.get('codMesa');
-      console.log(this.codigoMesa);
+      this.cargarLista();
     });
   }
 
+  ngOnInit() { }
+
+  public cargarLista() {
+    this.pedidosService.ListarPorMesa(this.codigoMesa).subscribe( response => {
+      console.log(response);
+      this.listaPedidos = response;
+    },
+    error => {
+      console.error(error);
+    });
+  }
 }

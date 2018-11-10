@@ -14,9 +14,8 @@ export class AppComponent {
    */
   constructor(private spinner: NgxSpinnerService) {
     this.showSpinner = false;
-    this.spinner.spinnerObservable.subscribe( x => {   
-        console.log(x);   
-        this.showSpinner = x;      
+    this.spinner.spinnerObservable.subscribe( x => {
+        this.showSpinner = x;
     });
   }
 }

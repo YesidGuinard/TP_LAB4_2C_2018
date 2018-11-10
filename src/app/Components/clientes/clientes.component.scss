@@ -1,0 +1,10 @@
+@import "../../../assets/Estilos/estilos-generales.scss";
+
+.title{
+    font-family: $font-family;
+    font-size: 100px;
+    color: $color02;
+    text-align: center;
+}
+
+hr { height:3px; border:none; color:$color02; background-color:$color02; }
