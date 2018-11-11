@@ -12,16 +12,17 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<Boolean> | Promise<Boolean> | Boolean {
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     const url: string = state.url;
     const roles = next.data['roles'] as Array<string>;
     return this.checkLogin(url, roles);
   }
 
-  checkLogin(url: string, roles: Array<string>): Boolean {
+  checkLogin(url: string, roles: Array<string>): boolean {
     const token = localStorage.getItem('token');
     const tokenInfo = this.jwt.decodeToken(token);
-    let check: Boolean = false;
+    // tslint:disable-next-line:no-inferrable-types
+    let check: boolean = false;
     if (tokenInfo) {
       const tipoUsuario = tokenInfo['tipo'];
       // Store the attempted URL for redirecting

@@ -1,0 +1,26 @@
+<div appPanel>
+  <h4>Registro de Mesas</h4>
+  <hr>
+  <form [formGroup]="form" (keyup.enter)="Submit()">
+    <div class="form-group">
+      <label for="codigo">Código: </label>
+      <input type="text" id="codigo" formControlName="codigo" class="form-control" placeholder="Código" [ngClass]="{ 'is-invalid': form.controls['codigo'].touched && form.controls['codigo'].invalid }">
+      <div *ngIf="form.controls['codigo'].touched && form.controls['codigo'].invalid" class="invalid-feedback"
+        autocomplete="username">
+        <div *ngIf="form.controls['codigo'].errors.required">Debe ingresar un codigo.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="foto">Foto: </label>
+      <input type="file" id="foto" formControlName="foto" class="form-control-file" (change)="onFileChange($event)" #fileInput>
+    </div>
+    <ngx-recaptcha2 #captchaElem [siteKey]="key" [size]="'normal'" [hl]="'es'" [theme]="'light'" [type]="'image'"
+      formControlName="recaptcha">
+    </ngx-recaptcha2>
+    <small *ngIf="error" class="text-danger font-weight-bold"><i class="fa fa-times"></i> {{errorMessage}} </small>
+    <small *ngIf="success" class="text-success font-weight-bold"><i class="fas fa-check"></i> Mesa registrada
+      correctamente. </small>
+    <hr>
+    <button type="submit" class="btn btn-primary" (click)="Submit()">Registrar</button><br>
+  </form>
+</div>

@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-            <h1 class="title">La Comanda</h1>
+            <h1 class="title" routerLink="/">La Comanda</h1>
             <hr>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center align-items-center">
         <div class="col-9">
             <app-pedidos-mesa [listaPedidos]="listaPedidos" [title]="'Lista de pedidos para ' + codigoMesa" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
         </div>

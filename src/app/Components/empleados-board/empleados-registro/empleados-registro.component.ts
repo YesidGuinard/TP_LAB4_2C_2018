@@ -1,5 +1,6 @@
+import { Registro } from './../../Common/Registro';
 import { EmpleadoService } from './../../../Services/empleado.service';
-import { Component, OnInit, EventEmitter, Input, Output, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReCaptcha2Component } from 'ngx-captcha';
 
@@ -8,19 +9,10 @@ import { ReCaptcha2Component } from 'ngx-captcha';
   templateUrl: './empleados-registro.component.html',
   styleUrls: ['./empleados-registro.component.scss']
 })
-export class EmpleadosRegistroComponent implements OnInit {
-  @Output() registradoCorrectamente: EventEmitter<any>;
-  @ViewChild('captchaElem') captcha: ReCaptcha2Component;
-  public form: FormGroup;
-  public key: string;
-  public errorMessage: string;
-  public error: boolean;
-  public success: boolean;
+export class EmpleadosRegistroComponent extends Registro implements OnInit  {
 
   constructor(private fb: FormBuilder, private empleadoService: EmpleadoService) {
-    this.registradoCorrectamente = new EventEmitter<any>();
-
-    this.key = '6LfzTncUAAAAAP99rAI6EFfbz4caukxBFAzPUAB_';
+    super();
 
     this.form = this.fb.group({
       usuario: ['', Validators.required],

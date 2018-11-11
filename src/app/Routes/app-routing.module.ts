@@ -1,3 +1,5 @@
+import { MesaBoardComponent } from './../Components/mesa-board/mesa-board.component';
+import { PedidosBoardComponent } from './../Components/pedidos-board/pedidos-board.component';
 import { EmpleadosBoardComponent } from './../Components/empleados-board/empleados-board.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,21 +21,29 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['Socio', 'Cocinero', 'Bartender', 'Cervecero', 'Mozo'] },
     children: [
+      { path: '', redirectTo: 'Pedidos', pathMatch: 'full' },
       {
         path: 'Empleados',
         component: EmpleadosBoardComponent,
         canActivate: [AuthGuard],
         data: { roles: ['Socio'] }
-      }
+      },
+      {
+        path: 'Pedidos',
+        component: PedidosBoardComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['Socio', 'Cocinero', 'Bartender', 'Cervecero', 'Mozo'] }
+      },
+      {
+        path: 'Mesas',
+        component: MesaBoardComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['Socio', 'Mozo'] }
+      },
     ]
   },
   {
     path: 'Clientes/:codMesa', component: ClientesComponent
-    // children: [
-    //   {
-    //     path: ''
-    //   }
-    // ]
   }
 ];
 

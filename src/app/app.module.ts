@@ -37,6 +37,13 @@ import { SectorPipe } from './Pipes/Sector.pipe';
 import { PanelDirective } from './Directives/panel.directive';
 import { EstadoPedidoDirective } from './Directives/estado-pedido.directive';
 import { AccionPedidoDirective } from './Directives/accion-pedido.directive';
+import { MesaBoardComponent } from './Components/mesa-board/mesa-board.component';
+import { MesaListComponent } from './Components/mesa-board/mesa-list/mesa-list.component';
+import { MesaRegistroComponent } from './Components/mesa-board/mesa-registro/mesa-registro.component';
+import { PedidosBoardComponent } from './Components/pedidos-board/pedidos-board.component';
+import { PedidosRegistroComponent } from './Components/pedidos-board/pedidos-registro/pedidos-registro.component';
+import { PedidosListComponent } from './Components/pedidos-board/pedidos-list/pedidos-list.component';
+import { CaptchaComponent } from './Components/Common/captcha/captcha.component';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -71,7 +78,14 @@ export function highchartsFactory() {
     SectorPipe,
     PanelDirective,
     EstadoPedidoDirective,
-    AccionPedidoDirective
+    AccionPedidoDirective,
+    MesaBoardComponent,
+    MesaListComponent,
+    MesaRegistroComponent,
+    PedidosBoardComponent,
+    PedidosRegistroComponent,
+    PedidosListComponent,
+    CaptchaComponent
   ],
   imports: [
     BrowserModule,

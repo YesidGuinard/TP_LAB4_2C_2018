@@ -1,0 +1,10 @@
+<div class="row card-group">
+  <div *ngFor="let mesa of mesasList" class="card col-3" style="width: 18rem;" appPanel> 
+    <img class="card-img-top" [src]="domSanitizer.bypassSecurityTrustUrl('data:'+mesa.tipoFoto+';base64,' + mesa.foto)" alt="Card image cap"> 
+    <div class="card-body">  
+      <h5 class="card-title">{{mesa.codigo}}</h5>
+      <p class="card-text">{{mesa.estado}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+</div>
