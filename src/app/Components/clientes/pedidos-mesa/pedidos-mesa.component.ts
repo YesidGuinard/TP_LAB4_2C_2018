@@ -9,6 +9,7 @@ import { PedidoService } from './../../../Services/pedido.service';
 })
 export class PedidosMesaComponent implements OnInit {
   @Input() listaPedidos: Pedido[];
+  @Input() title: string;
   @Output() refrescarEvent: EventEmitter<void>;
   constructor() {
     this.refrescarEvent = new EventEmitter<void>();

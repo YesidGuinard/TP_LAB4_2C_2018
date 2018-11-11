@@ -2,10 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Login } from 'src/app/Model/Login';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from 'src/app/Model/User';
 import { Router } from '@angular/router';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-empleados-login',
@@ -18,7 +15,7 @@ export class EmpleadosLoginComponent implements OnInit {
   public error: boolean;
   public errorMessage: string;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private jwt: JwtHelperService, private router: Router) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.fb.group({
       user: ['', Validators.required],
       pass: ['', Validators.required]
@@ -70,9 +67,6 @@ export class EmpleadosLoginComponent implements OnInit {
         .then(
           response => {
             if (response['Estado'] === 'OK') {
-              const token: JSON = this.jwt.decodeToken(response['Token']);
-              const user: User = new User(token['usuario'], token['tipo'], token['id'], token['nombre'], response['Token']);
-              localStorage.setItem('currentUser', JSON.stringify(user));
               localStorage.setItem('token', response['Token']);
               if (!this.authService.redirectUrl) {
                 this.authService.redirectUrl = '/Empleados';

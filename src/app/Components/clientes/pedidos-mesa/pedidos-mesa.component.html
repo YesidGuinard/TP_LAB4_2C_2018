@@ -1,12 +1,12 @@
-<table class="table table-sm table-hover table-light table-striped shadow p-3 mb-5 rounded">
+<table appPanel class="table table-sm table-hover table-light table-striped">
   <thead>
     <tr>
-      <th class="text-center" colspan="8"><b>Lista de Pedidos</b>
+      <th class="text-center" colspan="8"><b>{{title}}</b>
         <button class="float-right btn btn-outline-primary btn-sm" (click)="refrescar()"><i class="fas fa-sync-alt"></i> Refrescar</button>
       </th>
     </tr>
     <tr>
-      <th>Mesa</th>
+      <th></th>
       <th>Pedido</th>
       <th>Estado</th>
       <th>Tiempo Estimado</th>
@@ -14,22 +14,24 @@
       <th>Cliente</th>
       <th>Mozo</th>
       <th>Sector</th>
+      <th></th> 
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let pedido of listaPedidos">
-      <td>{{pedido.mesa}}</td>
+      <td appEstadoPedido [pedido]="pedido"></td> 
       <td>{{pedido.descripcion}}</td>
       <td>{{pedido.estado}}</td>
       <td>
         <span *ngIf="pedido.estado != 'Entregado'">{{pedido.hora_entrega_estimada}}</span>
-        <span *ngIf="pedido.estado == 'Entregado'">Entregado</span>
+        <span *ngIf="pedido.estado == 'Entregado' || pedido.estado == 'Finalizado'">Entregado</span>
         <span *ngIf="!pedido.hora_entrega_estimada">Aún no calculado</span>
       </td>
       <td>$ {{pedido.importe}}</td>
       <td>{{pedido.nombre_cliente}}</td>
       <td>{{pedido.nombre_mozo}}</td>
       <td>{{pedido.sector | Sector}}</td>
+      <td appAccionPedido [pedido]="pedido"></td>
     </tr>
   </tbody>
   <tfoot>

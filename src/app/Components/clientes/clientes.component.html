@@ -6,8 +6,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-7">
-            <app-pedidos-mesa [listaPedidos]="listaPedidos" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
+        <div class="col-9">
+            <app-pedidos-mesa [listaPedidos]="listaPedidos" [title]="'Lista de pedidos para ' + codigoMesa" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
         </div>
     </div>
 </div>

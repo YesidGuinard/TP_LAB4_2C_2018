@@ -25,7 +25,6 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { SpinnerInterceptor } from './Services/Interceptors/SpinnerInterceptor';
 import { NgxCaptchaModule } from 'ngx-captcha';
-import { ReCaptcha2Component } from 'ngx-captcha';
 import { ChartModule } from 'angular2-highcharts';
 import { EmpleadosChartsComponent } from './Components/empleados-board/empleados-charts/empleados-charts.component';
 import { Angular2CsvModule } from 'angular2-csv';
@@ -35,6 +34,9 @@ import { PedidosMesaComponent } from './Components/clientes/pedidos-mesa/pedidos
 import { OrdenarPipe } from './Pipes/ordenar.pipe';
 import { EstadoPipe } from './Pipes/Estado.pipe';
 import { SectorPipe } from './Pipes/Sector.pipe';
+import { PanelDirective } from './Directives/panel.directive';
+import { EstadoPedidoDirective } from './Directives/estado-pedido.directive';
+import { AccionPedidoDirective } from './Directives/accion-pedido.directive';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -66,7 +68,10 @@ export function highchartsFactory() {
     PedidosMesaComponent,
     OrdenarPipe,
     EstadoPipe,
-    SectorPipe
+    SectorPipe,
+    PanelDirective,
+    EstadoPedidoDirective,
+    AccionPedidoDirective
   ],
   imports: [
     BrowserModule,
