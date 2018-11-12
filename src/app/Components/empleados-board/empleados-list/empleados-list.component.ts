@@ -1,3 +1,4 @@
+import { CaptchaComponent } from './../../Common/captcha/captcha.component';
 import { EmpleadosModifyComponent } from './../empleados-modify/empleados-modify.component';
 import { Angular2CsvComponent} from 'angular2-csv';
 import { Empleado } from './../../../Model/Empleado';
@@ -12,6 +13,7 @@ import { getLocaleDateTimeFormat } from '@angular/common';
 })
 export class EmpleadosListComponent implements OnInit {
   @ViewChild('modalModify') modalModify: EmpleadosModifyComponent;
+  @ViewChild('captcha') captcha: CaptchaComponent;
   public listaEmpleados: Empleado[];
   options: Object = {
     fieldSeparator: ';',
@@ -60,6 +62,10 @@ export class EmpleadosListComponent implements OnInit {
   generarNombreCsv(): string {
     const nombre = 'ListaEmpleados ' + new Date().toDateString();
     return nombre;
+  }
+
+  mostrarCaptcha() {
+    this.captcha.cargarCaptcha();
   }
 
   darDeBaja(id: number) {

@@ -24,3 +24,10 @@ Este proyecto se encuentra alojado en https://mauriciocerizza.github.io/TP_LAB4_
 ► Readme <br>
 ► Acceso rápido <br>
 ► Highcharts / Estadísticas
+
+### 15/11
+► 3 Pipes <br>
+► 3 Directivas <br>
+► Manejo de Imágenes <br>
+► Mesas Board <br>
+► Captcha Propio <br>

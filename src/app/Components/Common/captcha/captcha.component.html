@@ -1,3 +1,26 @@
-<p>
-  captcha works!
-</p>
+<div class="modal" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row justify-content-center align-content-center">
+          <div class="col-8">
+            <h5>¿Qué color muestra la imagen?</h5>
+          </div>
+          <div class="col-4">
+            <img [src]="domSanitizer.bypassSecurityTrustUrl('data:image/png;base64,' +  foto)" class="rounded float-right" alt="color">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row justify-content-center align-content-center">
+          <div class="col-2"><button class="btn btn-sm btn-primary" (click)="submit('Azul')">Azul</button></div>
+          <div class="col-2"><button class="btn btn-sm btn-danger" (click)="submit('Rojo')">Rojo</button></div>
+          <div class="col-2"><button class="btn btn-sm btn-warning" (click)="submit('Amarillo')">Amarillo</button></div>
+          <div class="col-2"><button class="btn btn-sm btn-success" (click)="submit('Verde')">Verde</button></div>
+          <div class="col-2"><button type="button" class="btn btn-secondary btn-sm" (click)="cerrar()">Cerrar</button></div>
+          <span *ngIf="error" class="text-danger font-weight-bold"><i class="fa fa-times"></i> Falló. Vuelva a intentarlo.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

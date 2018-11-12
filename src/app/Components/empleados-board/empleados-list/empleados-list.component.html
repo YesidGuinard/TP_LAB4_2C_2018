@@ -27,7 +27,8 @@
         <a data-toggle="tooltip" title="Editar" (click)="showModifyModal(empleado)">| <i class="fas fa-user-edit"></i> | </a>
         <a *ngIf="empleado.estado === 'S' || empleado.estado === 'B'" (click)="activar(empleado.id)" data-toggle="tooltip" title="Activar"><i class="fas fa-user-plus"></i> | </a>
         <a *ngIf="empleado.estado === 'A'" (click)="suspender(empleado.id)" data-toggle="tooltip" title="Suspender"><i class="fas fa-user-minus"></i> | </a> 
-        <a *ngIf="empleado.estado === 'A' || empleado.estado === 'S'" (click)="darDeBaja(empleado.id)" data-toggle="tooltip" title="Baja"><i class="fas fa-user-times"></i> |</a>  
+        <a *ngIf="empleado.estado === 'A' || empleado.estado === 'S'" (click)="mostrarCaptcha()" data-toggle="tooltip" title="Baja"><i class="fas fa-user-times"></i> |</a>  
+        <app-captcha #captcha (success)="darDeBaja(empleado.id)"></app-captcha>
       </td>
     </tr>
   </tbody>

@@ -13,12 +13,16 @@ export class MesaListComponent implements OnInit {
   foto;
 
   constructor(private mesasService: MesasService, private domSanitizer: DomSanitizer) {
-    this.mesasService.Listar().subscribe( response => {
-      this.mesasList = response;
-    });
+    this.cargarLista();
   }
 
   ngOnInit() {
+  }
+
+  cargarLista() {
+    this.mesasService.Listar().subscribe( response => {
+      this.mesasList = response;
+    });
   }
 
 }

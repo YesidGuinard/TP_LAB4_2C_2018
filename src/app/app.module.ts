@@ -1,3 +1,4 @@
+import { CaptchaService } from './Services/captcha.service';
 import { CsvComponent } from './Components/Common/csv/csv.component';
 import { EmpleadoService } from './Services/empleado.service';
 import { EmpleadosRegistroComponent } from './Components/empleados-board/empleados-registro/empleados-registro.component';
@@ -134,7 +135,8 @@ export function highchartsFactory() {
     PedidoService,
     JwtHelperService,
     EmpleadoService,
-    NgxSpinnerService
+    NgxSpinnerService,
+    CaptchaService
   ],
   bootstrap: [AppComponent]
 })
