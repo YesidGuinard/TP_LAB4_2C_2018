@@ -9,12 +9,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CaptchaComponent implements OnInit {
   @Output() success: EventEmitter<void>;
-  private showModal: boolean;
-  private key: string;
-  private foto: string;
-  private error: boolean;
+  public showModal: boolean;
+  public key: string;
+  public foto: string;
+  public error: boolean;
 
-  constructor(private captchaService: CaptchaService, private domSanitizer: DomSanitizer) {
+  constructor(public captchaService: CaptchaService, public domSanitizer: DomSanitizer) {
     this.foto = '';
     this.success = new EventEmitter<void>();
   }
@@ -30,7 +30,7 @@ export class CaptchaComponent implements OnInit {
     });
   }
 
-  private submit(color: string) {
+  public submit(color: string) {
     this.captchaService.PostCaptcha(this.key, color).then( response => {
       console.log(response);
       if (response.Estado === 'OK') {
@@ -48,7 +48,7 @@ export class CaptchaComponent implements OnInit {
     });
   }
 
-  private cerrar() {
+  public cerrar() {
     this.error = false;
     this.showModal = false;
   }
