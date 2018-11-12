@@ -14,10 +14,10 @@
                 <a class="nav-link" routerLinkActive="active" routerLink="Pedidos">Pedidos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="Empleados">Empleados</a>
+                <a class="nav-link" *appValidarRoles="['Socio']" routerLinkActive="active" routerLink="Empleados">Empleados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLinkActive="active" routerLink="Mesas">Mesas</a>
+                <a class="nav-link" *appValidarRoles="['Mozo','Socio']" routerLinkActive="active" routerLink="Mesas">Mesas</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

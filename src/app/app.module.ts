@@ -45,6 +45,8 @@ import { PedidosBoardComponent } from './Components/pedidos-board/pedidos-board.
 import { PedidosRegistroComponent } from './Components/pedidos-board/pedidos-registro/pedidos-registro.component';
 import { PedidosListComponent } from './Components/pedidos-board/pedidos-list/pedidos-list.component';
 import { CaptchaComponent } from './Components/Common/captcha/captcha.component';
+import { ValidarRolesDirective } from './Directives/validar-roles.directive';
+import { FiltrarPorRolPipe } from './Pipes/filtrar-por-rol.pipe';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -86,7 +88,9 @@ export function highchartsFactory() {
     PedidosBoardComponent,
     PedidosRegistroComponent,
     PedidosListComponent,
-    CaptchaComponent
+    CaptchaComponent,
+    ValidarRolesDirective,
+    FiltrarPorRolPipe
   ],
   imports: [
     BrowserModule,
