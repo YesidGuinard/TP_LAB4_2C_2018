@@ -25,4 +25,36 @@ export class MesaListComponent implements OnInit {
     });
   }
 
+  cambiarEstado(estado: number, codigo: string) {
+    switch (estado) {
+      case 1:
+        this.mesasService.CambiarEstadoEsperando(codigo).then( () => {
+          this.cargarLista();
+        });
+        break;
+      case 2:
+        this.mesasService.CambiarEstadoComiendo(codigo).then( () => {
+          this.cargarLista();
+        });
+        break;
+      case 3:
+        this.mesasService.CambiarEstadoPagando(codigo).then( () => {
+          this.cargarLista();
+        });
+        break;
+      case 4:
+        this.mesasService.CambiarEstadoCerrada(codigo).then( () => {
+          this.cargarLista();
+        });
+        break;
+    }
+    this.cargarLista();
+  }
+
+  eliminar(codigo: string) {
+    this.mesasService.Eliminar(codigo).then( () => {
+      this.cargarLista();
+    });
+  }
+
 }

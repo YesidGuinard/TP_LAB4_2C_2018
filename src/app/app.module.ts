@@ -43,7 +43,6 @@ import { MesaListComponent } from './Components/mesa-board/mesa-list/mesa-list.c
 import { MesaRegistroComponent } from './Components/mesa-board/mesa-registro/mesa-registro.component';
 import { PedidosBoardComponent } from './Components/pedidos-board/pedidos-board.component';
 import { PedidosRegistroComponent } from './Components/pedidos-board/pedidos-registro/pedidos-registro.component';
-import { PedidosListComponent } from './Components/pedidos-board/pedidos-list/pedidos-list.component';
 import { CaptchaComponent } from './Components/Common/captcha/captcha.component';
 import { ValidarRolesDirective } from './Directives/validar-roles.directive';
 import { FiltrarPorRolPipe } from './Pipes/filtrar-por-rol.pipe';
@@ -87,7 +86,6 @@ export function highchartsFactory() {
     MesaRegistroComponent,
     PedidosBoardComponent,
     PedidosRegistroComponent,
-    PedidosListComponent,
     CaptchaComponent,
     ValidarRolesDirective,
     FiltrarPorRolPipe

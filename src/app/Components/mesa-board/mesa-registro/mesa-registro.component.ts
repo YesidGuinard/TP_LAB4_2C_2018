@@ -56,7 +56,6 @@ export class MesaRegistroComponent extends Registro implements OnInit {
     this.success = false;
     const fotoValida = this.ValidarFoto(this.file);
     if (this.form.valid && fotoValida) {
-      console.log(this.file.value);
       const codigo = this.form.get('codigo').value;
       this.mesasService.Registrar(codigo, this.file)
         .then(

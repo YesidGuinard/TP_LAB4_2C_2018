@@ -14,4 +14,8 @@ export class PedidoService {
   public ListarPorMesa(codigoMesa: string): Observable<Pedido[]> {
     return this.miHttp.httpGetO<Pedido[]>('pedido/listarPorMesa/' + codigoMesa);
   }
+
+  public ListarActivosPorSector(): Observable<Pedido[]> {
+    return this.miHttp.httpGetO<Pedido[]>('pedido/listarActivos/');
+  }
 }

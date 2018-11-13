@@ -1,7 +1,7 @@
 <table appPanel class="table table-sm table-hover table-light table-striped">
   <thead>
     <tr>
-      <th class="text-center" colspan="9"><b>{{title}}</b>
+      <th class="text-center" colspan="10"><b>{{title}}</b>
         <button class="float-right btn btn-outline-primary btn-sm" (click)="refrescar()"><i class="fas fa-sync-alt"></i> Refrescar</button>
       </th>
     </tr>
@@ -13,12 +13,13 @@
       <th>Precio</th>
       <th>Cliente</th>
       <th>Mozo</th>
+      <th>Mesa</th>
       <th>Sector</th>
       <th></th> 
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pedido of listaPedidos">
+    <tr *ngFor="let pedido of listaPedidos | Ordenar: 'mesa' : false">
       <td appEstadoPedido [pedido]="pedido"></td> 
       <td>{{pedido.descripcion}}</td>
       <td>{{pedido.estado}}</td>
@@ -30,11 +31,12 @@
       <td>$ {{pedido.importe}}</td>
       <td>{{pedido.nombre_cliente}}</td>
       <td>{{pedido.nombre_mozo}}</td>
+      <td>{{pedido.mesa}}</td>
       <td>{{pedido.sector | Sector}}</td>
       <td appAccionPedido [pedido]="pedido"></td>
     </tr>
   </tbody>
-  <tfoot>
+  <tfoot *ngIf="showTotal">
     <tr>
       <td colspan="8"><b>Total: </b>$ {{calcularTotal()}}</td>
     </tr>

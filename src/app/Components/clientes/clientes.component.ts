@@ -10,7 +10,7 @@ import { PedidoService } from 'src/app/Services/pedido.service';
   styleUrls: ['./clientes.component.scss']
 })
 export class ClientesComponent implements OnInit {
-  @Output() listaPedidos: Pedido[];
+  listaPedidos: Pedido[];
   codigoMesa: string;
 
   constructor(

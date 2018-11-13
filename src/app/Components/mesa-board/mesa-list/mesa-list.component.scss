@@ -1,11 +1,19 @@
 .card-img-top {
-    width: 300px;
-    height: 300px;
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    min-height: 300px;
     object-fit: cover;
 }
 
 .card{
-    width: 300px;
-    height: 500px;
+    min-width: 330px;
+    min-height: 500px;
+    max-width: 330px;
+    max-height: 500px;
     margin: 15px;
+}
+
+button{
+    margin-bottom: 5px;
 }

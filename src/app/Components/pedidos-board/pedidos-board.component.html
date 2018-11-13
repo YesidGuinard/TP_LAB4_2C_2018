@@ -3,8 +3,8 @@
     <div *appValidarRoles="['Mozo','Socio']" class="contenedor col-3">
       <app-pedidos-registro></app-pedidos-registro>
     </div>
-    <div class="contenedor col-7 col-xl-6">
-      <app-pedidos-list></app-pedidos-list>
+    <div class="contenedor col-8">
+      <app-pedidos-mesa [showTotal]="false" [listaPedidos]="listaPedidos" [title]="'Lista de pedidos'" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
     </div>
   </div>
 </div>

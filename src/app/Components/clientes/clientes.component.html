@@ -7,7 +7,7 @@
     </div>
     <div class="row justify-content-center align-items-center">
         <div class="col-9">
-            <app-pedidos-mesa [listaPedidos]="listaPedidos" [title]="'Lista de pedidos para ' + codigoMesa" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
+            <app-pedidos-mesa [showTotal]="true" [listaPedidos]="listaPedidos" [title]="'Lista de pedidos para ' + codigoMesa" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
         </div>
     </div>
 </div>

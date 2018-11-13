@@ -1,10 +1,21 @@
-<div class="row card-group">
-  <div *ngFor="let mesa of mesasList" class="card col-3" style="width: 18rem;" appPanel> 
-    <img class="card-img-top" [src]="domSanitizer.bypassSecurityTrustUrl('data:'+mesa.tipoFoto+';base64,' + mesa.foto)" alt="Card image cap"> 
-    <div class="card-body">  
+<div class="card-deck justify-content-center align-content-center">
+  <div *ngFor="let mesa of mesasList" class="card" appPanel>
+    <img class="card-img-top" [src]="domSanitizer.bypassSecurityTrustUrl('data:'+mesa.tipoFoto+';base64,' + mesa.foto)"
+      alt="Card image cap">
+    <div class="card-body">
       <h5 class="card-title">{{mesa.codigo}}</h5>
       <p class="card-text">{{mesa.estado}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
+    <div class="btn-group" role="group">
+      <button id="btnEstado" class="btn btn-info btn-sm btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">Estado</button>
+      <div class="dropdown-menu" aria-labelledby="btnEstado">
+        <a class="dropdown-item" (click)="cambiarEstado(1, mesa.codigo)">Esperando Pedido</a>
+        <a class="dropdown-item" (click)="cambiarEstado(2, mesa.codigo)">Comiendo</a>
+        <a class="dropdown-item" (click)="cambiarEstado(3, mesa.codigo)">Pagando</a>
+        <a class="dropdown-item" (click)="cambiarEstado(4, mesa.codigo)">Cerrada</a>
+      </div>
+    </div>
+    <button *appValidarRoles="['Socio']" class="btn btn-danger btn-sm btn-block" (click)="eliminar(mesa.codigo)">Eliminar</button>
   </div>
 </div>
