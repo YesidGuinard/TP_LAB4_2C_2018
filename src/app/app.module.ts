@@ -46,6 +46,7 @@ import { PedidosRegistroComponent } from './Components/pedidos-board/pedidos-reg
 import { CaptchaComponent } from './Components/Common/captcha/captcha.component';
 import { ValidarRolesDirective } from './Directives/validar-roles.directive';
 import { MenuService } from './Services/menu.service';
+import { EstadoPedidosPipe } from './Pipes/estado-pedidos.pipe';
 
 export function getAccessToken() {
   return localStorage.getItem('token');
@@ -87,7 +88,8 @@ export function highchartsFactory() {
     PedidosBoardComponent,
     PedidosRegistroComponent,
     CaptchaComponent,
-    ValidarRolesDirective
+    ValidarRolesDirective,
+    EstadoPedidosPipe
   ],
   imports: [
     BrowserModule,

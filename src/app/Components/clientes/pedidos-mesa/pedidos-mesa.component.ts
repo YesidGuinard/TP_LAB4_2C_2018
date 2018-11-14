@@ -17,6 +17,7 @@ export class PedidosMesaComponent implements OnInit {
   error: boolean;
   errorMessage: string;
   showModal: boolean;
+  private codigoAux: string;
 
   constructor(private pedidoService: PedidoService, private fb: FormBuilder) {
     this.refrescarEvent = new EventEmitter<void>();
@@ -51,17 +52,21 @@ export class PedidosMesaComponent implements OnInit {
     });
   }
 
-  tomarPedido(codigo: string) {
+  tomarPedido() {
     this.errorMessage = '';
     this.error = false;
     if (this.form.valid) {
       const tiempoEstimado = this.form.get('tiempoEstimado').value;
 
-      this.pedidoService.TomarPedido(codigo, tiempoEstimado)
+      this.pedidoService.TomarPedido(this.codigoAux, tiempoEstimado)
         .then(
           response => {
+            console.log(response);
             this.refrescar();
             this.showModal = false;
+          },
+          error => {
+            console.log(error);
           }
         );
     } else {
@@ -80,6 +85,11 @@ export class PedidosMesaComponent implements OnInit {
     this.pedidoService.Cancelar(codigo).then( () => {
       this.refrescar();
     });
+  }
+
+  ClickTomarPedido(codigo: string) {
+    this.codigoAux = codigo;
+    this.showModal = true;
   }
 
 }

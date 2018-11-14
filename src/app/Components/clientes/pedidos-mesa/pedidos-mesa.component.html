@@ -9,13 +9,13 @@
       <th></th>
       <th>Pedido</th>
       <th>Estado</th>
-      <th>Tiempo Estimado</th>
+      <th>Hora Entrega Estimada</th>
       <th>Precio</th>
       <th>Cliente</th>
       <th>Mozo</th>
       <th>Mesa</th>
       <th>Sector</th>
-      <th colspan="2">Acciones</th> 
+      <th *ngIf="!showTotal" colspan="2">Acciones</th> 
     </tr>
   </thead>
   <tbody>
@@ -23,11 +23,7 @@
       <td appEstadoPedido [pedido]="pedido"></td> 
       <td>{{pedido.descripcion}}</td>
       <td>{{pedido.estado}}</td>
-      <td>
-        <span *ngIf="pedido.estado != 'Entregado'">{{pedido.hora_entrega_estimada}}</span>
-        <span *ngIf="pedido.estado == 'Entregado' || pedido.estado == 'Finalizado'">Entregado</span>
-        <span *ngIf="!pedido.hora_entrega_estimada">Aún no calculado</span>
-      </td>
+      <td>{{ pedido.hora_entrega_estimada | estadoPedidos : pedido }}</td>
       <td>$ {{pedido.importe}}</td>
       <td>{{pedido.nombre_cliente}}</td>
       <td>{{pedido.nombre_mozo}}</td>
@@ -36,39 +32,40 @@
       <td *appAccionPedido="pedido, boton: 0"><a style="cursor: pointer;" (click)="cancelarPedido(pedido.codigo)" data-toggle="tooltip" title="Cancelar Pedido"><i class="fas fa-ban"></i></a></td>
       <td *appAccionPedido="pedido, boton: 2"><a style="cursor: pointer;" (click)="servirPedido(pedido.codigo)" data-toggle="tooltip" title="Servir Pedido"><i class="fas fa-concierge-bell"></i></a></td>
       <td *appAccionPedido="pedido, boton: 1"><a style="cursor: pointer;" (click)="marcarParaServir(pedido.codigo)" data-toggle="tooltip" title="Marcar como Listo para Servir"><i class="far fa-check-circle"></i></a></td>
-      <td *appAccionPedido="pedido, boton: 3"><a style="cursor: pointer;" (click)="showModal = true" data-toggle="tooltip" title="Tomar Pedido"><i class="fas fa-clipboard-list"></i></a></td>
-      <div class="modal" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form [formGroup]="form" (keyup.enter)="tomarPedido(pedido.codigo)">
-                <div class="form-group">
-                  <label for="tiempoEstimado">Tiempo de Preparación Estimado (Minutos): </label>
-                  <input type="number" id="tiempoEstimado" formControlName="tiempoEstimado" class="form-control" placeholder="Tiempo estimado de preparación" [ngClass]="{ 'is-invalid': form.controls['tiempoEstimado'].touched && form.controls['tiempoEstimado'].invalid }">
-                  <div *ngIf="form.controls['tiempoEstimado'].touched && form.controls['tiempoEstimado'].invalid" class="invalid-feedback" autocomplete="username"> 
-                    <div *ngIf="form.controls['tiempoEstimado'].errors.required">Debe ingresar un tiempo estimado de preparación.</div>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="showModal=false">Cerrar</button>
-              <button type="button" class="btn btn-primary" (click)="tomarPedido(pedido.codigo)">Tomar Pedido</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <td *appAccionPedido="pedido, boton: 3"><a style="cursor: pointer;" (click)="ClickTomarPedido(pedido.codigo)" data-toggle="tooltip" title="Tomar Pedido"><i class="fas fa-clipboard-list"></i></a></td>
+      
     </tr>
   </tbody>
   <tfoot *ngIf="showTotal">
     <tr>
-      <td colspan="8"><b>Total: </b>$ {{calcularTotal()}}</td>
+      <td colspan="10"><b>Total: </b>$ {{calcularTotal()}}</td>
     </tr>
   </tfoot>
 </table>
 
+<div class="modal" [ngStyle]="{'display': showModal ? 'block' : 'none'}">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="form" (keyup.enter)="tomarPedido()">
+            <div class="form-group">
+              <label for="tiempoEstimado">Tiempo de Preparación Estimado (Minutos): </label>
+              <input type="number" id="tiempoEstimado" formControlName="tiempoEstimado" class="form-control" placeholder="Tiempo estimado de preparación" [ngClass]="{ 'is-invalid': form.controls['tiempoEstimado'].touched && form.controls['tiempoEstimado'].invalid }">
+              <div *ngIf="form.controls['tiempoEstimado'].touched && form.controls['tiempoEstimado'].invalid" class="invalid-feedback" autocomplete="username"> 
+                <div *ngIf="form.controls['tiempoEstimado'].errors.required">Debe ingresar un tiempo estimado de preparación.</div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="showModal=false">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="tomarPedido()">Tomar Pedido</button>
+        </div>
+      </div>
+    </div>
+  </div>
