@@ -57,4 +57,12 @@ export class MesaListComponent implements OnInit {
     });
   }
 
+  cobrar(codigo: string) {
+    this.mesasService.Cobrar(codigo).then( () => {
+      this.mesasService.CambiarEstadoCerrada(codigo).then( () => {
+        this.cargarLista();
+      });
+    });
+  }
+
 }

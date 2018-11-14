@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pedido } from './../../../Model/Pedido';
 import { PedidoService } from './../../../Services/pedido.service';
@@ -12,8 +13,16 @@ export class PedidosMesaComponent implements OnInit {
   @Input() title: string;
   @Input() showTotal: boolean;
   @Output() refrescarEvent: EventEmitter<void>;
-  constructor() {
+  form: FormGroup;
+  error: boolean;
+  errorMessage: string;
+  showModal: boolean;
+
+  constructor(private pedidoService: PedidoService, private fb: FormBuilder) {
     this.refrescarEvent = new EventEmitter<void>();
+    this.form = this.fb.group({
+      tiempoEstimado: [0, Validators.required]
+    });
   }
 
   ngOnInit() {
@@ -35,4 +44,42 @@ export class PedidosMesaComponent implements OnInit {
   refrescar() {
     this.refrescarEvent.emit();
   }
+
+  marcarParaServir(codigo: string) {
+    this.pedidoService.MarcarListoParaServir(codigo).then( () => {
+      this.refrescar();
+    });
+  }
+
+  tomarPedido(codigo: string) {
+    this.errorMessage = '';
+    this.error = false;
+    if (this.form.valid) {
+      const tiempoEstimado = this.form.get('tiempoEstimado').value;
+
+      this.pedidoService.TomarPedido(codigo, tiempoEstimado)
+        .then(
+          response => {
+            this.refrescar();
+            this.showModal = false;
+          }
+        );
+    } else {
+      this.errorMessage = 'Debe completar los campos correctamente.';
+      this.error = true;
+    }
+  }
+
+  servirPedido(codigo: string) {
+    this.pedidoService.Servir(codigo).then( () => {
+      this.refrescar();
+    });
+  }
+
+  cancelarPedido(codigo: string) {
+    this.pedidoService.Cancelar(codigo).then( () => {
+      this.refrescar();
+    });
+  }
+
 }

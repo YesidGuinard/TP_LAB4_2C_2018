@@ -15,7 +15,8 @@
         <a class="dropdown-item" (click)="cambiarEstado(3, mesa.codigo)">Pagando</a>
         <a class="dropdown-item" (click)="cambiarEstado(4, mesa.codigo)">Cerrada</a>
       </div>
+      <button *appValidarRoles="['Socio']" class="btn btn-warning btn-sm" (click)="cobrar(mesa.codigo)">Cobrar</button>
+      <button *appValidarRoles="['Socio']" class="btn btn-danger btn-sm" (click)="eliminar(mesa.codigo)">Eliminar</button>
     </div>
-    <button *appValidarRoles="['Socio']" class="btn btn-danger btn-sm btn-block" (click)="eliminar(mesa.codigo)">Eliminar</button>
   </div>
 </div>

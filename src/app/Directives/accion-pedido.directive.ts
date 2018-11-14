@@ -1,53 +1,70 @@
+import { BotonPedido } from './../Components/Common/botonPedido.enum';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Pedido } from './../Model/Pedido';
-import { Directive, Input, ElementRef, Renderer, OnInit } from '@angular/core';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[appAccionPedido]'
 })
 export class AccionPedidoDirective implements OnInit {
-  @Input() pedido: Pedido;
+  pedido: Pedido;
+  @Input() set appAccionPedido(value: Pedido) {
+    this.pedido = value;
+  }
 
-  constructor(public el: ElementRef,
-    public rederer: Renderer,
+  boton: BotonPedido;
+  @Input() set appAccionPedidoBoton(value: BotonPedido) {
+    this.boton = value;
+  }
+
+  constructor(
+    private templateRef: TemplateRef<any>,
+    private viewContainer: ViewContainerRef,
     private jwt: JwtHelperService) {
   }
 
   ngOnInit() {
     const token = localStorage.getItem('token');
     const tokenInfo = this.jwt.decodeToken(token);
+    let renderizar = false;
 
     if (tokenInfo) {
       const tipoUsuario = tokenInfo['tipo'];
-      let innerHTML: String = '';
 
       if (tipoUsuario !== 'Mozo') {
         switch (this.pedido.estado) {
           case 'En Preparacion':
-            // tslint:disable-next-line:max-line-length
-            innerHTML += '<a style="cursor: pointer;" (click)="marcarParaServir()" data-toggle="tooltip" title="Marcar como Listo para Servir"><i class="far fa-check-circle"></i>  </a>';
+            if (this.boton === BotonPedido.ParaServir) {
+              renderizar = true;
+            }
             break;
           case 'Pendiente':
-            // tslint:disable-next-line:max-line-length
-            innerHTML += '<a style="cursor: pointer;" (click)="tomarPedido()" data-toggle="tooltip" title="Tomar Pedido"><i class="fas fa-clipboard-list"></i>  </a>';
+            if (this.boton === BotonPedido.Tomar) {
+              renderizar = true;
+            }
             break;
         }
       }
       if (tipoUsuario === 'Mozo' || tipoUsuario === 'Socio') {
         switch (this.pedido.estado) {
           case 'Listo para Servir':
-            // tslint:disable-next-line:max-line-length
-            innerHTML += '<a style="cursor: pointer;" (click)="servirPedido()" data-toggle="tooltip" title="Servir Pedido"><i class="fas fa-concierge-bell"></i>  </a>';
+            if (this.boton === BotonPedido.Servir) {
+              renderizar = true;
+            }
           // tslint:disable-next-line:no-switch-case-fall-through
           case 'En Preparacion':
           case 'Pendiente':
-            // tslint:disable-next-line:max-line-length
-            innerHTML += '<a style="cursor: pointer;" (click)="cancelarPedido()" data-toggle="tooltip" title="Cancelar Pedido"><i class="fas fa-ban"></i>  </a>';
+            if (this.boton === BotonPedido.Cancelar) {
+              renderizar = true;
+            }
             break;
         }
       }
 
-      this.el.nativeElement.innerHTML = innerHTML;
+      if (renderizar) {
+        this.viewContainer.createEmbeddedView(this.templateRef);
+      }
+
     }
 
 

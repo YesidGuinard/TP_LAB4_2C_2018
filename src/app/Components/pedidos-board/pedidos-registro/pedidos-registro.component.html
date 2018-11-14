@@ -1,3 +1,31 @@
-<p>
-  pedidos-registro works!
-</p>
+<div appPanel>
+  <h4>Registro de Pedidos</h4>
+  <hr>
+  <form [formGroup]="form" (keyup.enter)="Submit()">
+    <div class="form-group">
+      <label for="cliente">Cliente: </label>
+      <input type="text" id="cliente" formControlName="cliente" class="form-control" placeholder="Nombre del Cliente" [ngClass]="{ 'is-invalid': form.controls['cliente'].touched && form.controls['cliente'].invalid }">
+      <div *ngIf="form.controls['cliente'].touched && form.controls['cliente'].invalid" class="invalid-feedback"
+        autocomplete="username">
+        <div *ngIf="form.controls['cliente'].errors.required">Debe ingresar un cliente.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="mesa">Mesa: </label>
+      <select id="mesa" formControlName="mesa" class="form-control" >
+        <option *ngFor="let mesa of mesas" value="{{mesa.codigo}}">{{mesa.codigo}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="menu">Menu: </label>
+      <select id="menu" formControlName="menu" class="form-control" >
+        <option *ngFor="let menu of menuList" value="{{menu.id}}">{{menu.nombre}} - ${{menu.precio}} - {{menu.sector}}</option>
+      </select>
+    </div>
+    <small *ngIf="error" class="text-danger font-weight-bold"><i class="fa fa-times"></i> {{errorMessage}} </small>
+    <small *ngIf="success" class="text-success font-weight-bold"><i class="fas fa-check"></i> Mesa registrada
+      correctamente. </small>
+    <hr>
+    <button type="submit" class="btn btn-primary" (click)="Submit()">Registrar</button><br>
+  </form>
+</div>

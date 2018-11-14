@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row justify-content-center align-items-center">
+  <div class="row justify-content-center">
     <div *appValidarRoles="['Mozo','Socio']" class="contenedor col-3">
-      <app-pedidos-registro></app-pedidos-registro>
+      <app-pedidos-registro (registradoCorrectamente)="cargarLista()"></app-pedidos-registro>
     </div>
     <div class="contenedor col-8">
       <app-pedidos-mesa [showTotal]="false" [listaPedidos]="listaPedidos" [title]="'Lista de pedidos'" (refrescarEvent)="cargarLista()"></app-pedidos-mesa>
